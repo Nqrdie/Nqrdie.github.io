@@ -650,6 +650,13 @@ section,
   position: relative;
 }
 
+.align-bottom {
+  margin-top: auto; /* Push it to the bottom of the container */
+  text-align: left; /* Center the text horizontally */
+  padding-bottom:0px; /* Optional: Add padding so it's not flush against the screen */
+  color: #fff; /* Change text color if needed */
+}
+
 .section-title h2 {
   font-size: 14px;
   font-weight: 500;
