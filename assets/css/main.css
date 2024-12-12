@@ -183,7 +183,8 @@ h6 {
 /* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
-    padding: 0;
+    padding: 0; 
+    width: 100%; /* Makes navmenu span the entire width */
   }
 
   .navmenu ul {
@@ -192,6 +193,7 @@ h6 {
     display: flex;
     list-style: none;
     align-items: center;
+    justify-content: flex-start; /* Aligns items to the far left */
   }
 
   .navmenu li {
@@ -203,6 +205,10 @@ h6 {
     padding: 15px 14px;
   }
 
+  .navmenu>ul>li:first-child {
+    padding-left: 0; /* Ensure first item has no left padding */
+  }
+
   .navmenu>ul>li:last-child {
     padding-right: 0;
   }
@@ -210,7 +216,7 @@ h6 {
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-color);
-    font-size: 15px;
+    font-size: 20px;
     padding: 0 2px;
     font-family: var(--nav-font);
     font-weight: 400;
@@ -235,7 +241,7 @@ h6 {
     position: absolute;
     height: 2px;
     bottom: -6px;
-    left: 0;
+    left: 0px;
     background-color: var(--nav-hover-color);
     visibility: hidden;
     width: 0px;
@@ -262,8 +268,8 @@ h6 {
     display: block;
     position: absolute;
     visibility: hidden;
-    left: 14px;
-    top: 130%;
+    left: 0; /* Align dropdown to the far left of the parent */
+    top: 100%; 
     opacity: 0;
     transition: 0.3s;
     border-radius: 4px;
@@ -300,18 +306,17 @@ h6 {
 
   .navmenu .dropdown .dropdown ul {
     top: 0;
-    left: -90%;
+    left: -100%; 
     visibility: hidden;
   }
 
   .navmenu .dropdown .dropdown:hover>ul {
     opacity: 1;
     top: 0;
-    left: -100%;
+    left: -100%; 
     visibility: visible;
   }
 }
-
 /* Mobile Navigation */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
@@ -698,7 +703,7 @@ section,
   padding: 80px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Move all content to the left */
 }
 
 .hero img {
@@ -708,12 +713,16 @@ section,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero .container {
   position: relative;
   z-index: 3;
+  width: 100%; /* Make the container full width */
+  max-width: 100%; /* Remove any restrictions from frameworks */
+  margin: 0; /* Remove automatic centering margin */
+  padding-left: 100px; /* Control how far left or right the content should be */
 }
 
 .hero h2 {
@@ -755,12 +764,20 @@ section,
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 40px 0;
+  }
+
   .hero h2 {
     font-size: 32px;
   }
 
   .hero p {
     font-size: 20px;
+  }
+
+  .hero .container {
+    padding-left: 20px; /* Reduce the padding for mobile view */
   }
 }
 
