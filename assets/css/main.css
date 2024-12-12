@@ -184,7 +184,7 @@ h6 {
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0; 
-    width: 100%; /* Makes navmenu span the entire width */
+    width: 100% !important; /* Makes navmenu span the entire width */
   }
 
   .navmenu ul {
@@ -193,7 +193,7 @@ h6 {
     display: flex;
     list-style: none;
     align-items: center;
-    justify-content: flex-start; /* Aligns items to the far left */
+    justify-content: flex-start !important; /* Aligns items to the far left */
   }
 
   .navmenu li {
@@ -252,7 +252,7 @@ h6 {
   .navmenu li:hover>a:before,
   .navmenu .active:before {
     visibility: visible;
-    width: 25px;
+    width: 100%;
   }
 
   .navmenu li:hover>a,
@@ -777,7 +777,10 @@ section,
   }
 
   .hero .container {
-    padding-left: 20px; /* Reduce the padding for mobile view */
+    width: 100% !important; /* Force override */
+    max-width: 100% !important; /* Force override */
+    margin: 0 !important; /* Remove auto-centering */
+    padding-left: 20px !important; /* Ensure proper alignment */
   }
 }
 
