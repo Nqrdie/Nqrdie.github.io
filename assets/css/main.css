@@ -1437,9 +1437,6 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 /*--------------------------------------------------------------
 # Contact Section
@@ -1588,6 +1585,7 @@ section,
   white-space: pre;       /* preserve formatting */
   display: block;
 }
+
 .code-snippets pre {
   max-width: 600px;
   min-width: 600px;
