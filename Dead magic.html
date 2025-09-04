@@ -114,13 +114,13 @@
                 </div>
 
                 <div class="swiper-slide">
-                  <video autoplay controls loading= "lazy" class= "swiper-slide">
+                  <video controls loading= "lazy" class= "swiper-slide">
                     <source src = "assets/img/portfolio/Dead Magic/MenuGif.mp4">
                   </video>
                 </div>
 
                 <div class="swiper-slide">
-                  <video autoplay controls loading= "lazy" class= "swiper-slide">
+                  <video controls loading= "lazy" class= "swiper-slide">
                     <source src = "assets/img/portfolio/Dead Magic/CreateLobby.mp4">
                   </video>
                 </div>
@@ -152,6 +152,63 @@
             </div>
           </div>
 
+<!-- Prism.js CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+<div class="col-lg-4"></div>
+
+<!-- CODE BLOCK instead of image -->
+<div class="code-snippets">
+  <pre><code class="language-csharp">
+// Example Spell Script
+public class Spell {
+    public float cooldown = 5f;
+    private float lastCastTime = 0f;
+
+    public void Cast() {
+        if (Time.time - lastCastTime >= cooldown) {
+            Debug.Log("Spell Cast!");
+            lastCastTime = Time.time;
+        }
+    }
+}
+  </code></pre>
+
+  <div class="portfolio-info">
+    <h3>Spell Script</h3>
+    <ul>
+      <li><strong>Language</strong>: C#</li>
+      <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game. It handles the casting, cooldown, and effects of each spell.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Video blocks -->
+<div class="code-snippets">
+  <video controls loading="lazy" class="code-snippets">
+    <source src="assets/img/portfolio/Dead Magic/MenuGif.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="code-snippets">
+  <video controls loading="lazy" class="code-snippets">
+    <source src="assets/img/portfolio/Dead Magic/CreateLobby.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="code-snippets">
+  <video controls loading="lazy" class="code-snippets">
+    <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- Prism.js JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+
+          </div>
+
         </div>
 
       </div>
@@ -160,6 +217,7 @@
 
   </main>
 
+  
   <footer id="footer" class="footer dark-background">
     <div class="container">
       <h3 class="sitename">Links</h3>

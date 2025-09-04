@@ -593,7 +593,7 @@ h6 {
 }
 
 .page-title .heading {
-  padding: 160px 0 80px 0;
+  padding: 20px 0 20px 0;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
@@ -634,7 +634,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
+  padding: 40px 0;
   scroll-margin-top: 100px;
   overflow: clip;
 }
@@ -1535,4 +1535,20 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+
+.code-snippets {
+  max-height: 400px ;
+  max-width: 800px;
+  overflow: hidden; /* hides overflow so images don't spill out */
+  display: flex;    /* centers image */
+  justify-content: center;
+  align-items: center;
+}
+
+.code-snippets img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* preserves aspect ratio */
 }
