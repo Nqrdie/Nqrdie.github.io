@@ -201,4 +201,31 @@
 
   });
 
+  // Zoom functionality
+const code = document.querySelector(".pre-container pre");
+let fontSize = 16;
+let zoomInterval = null;
+
+// Function to change font size
+function changeFontSize(delta) {
+  fontSize = Math.max(8, fontSize + delta);
+  code.style.fontSize = fontSize + "px";
+}
+
+// Zoom in button
+const zoomInBtn = document.getElementById("zoom-in");
+zoomInBtn.addEventListener("mousedown", () => {
+  zoomInterval = setInterval(() => changeFontSize(1), 50); // zoom in every 50ms
+});
+zoomInBtn.addEventListener("mouseup", () => clearInterval(zoomInterval));
+zoomInBtn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+
+// Zoom out button
+const zoomOutBtn = document.getElementById("zoom-out");
+zoomOutBtn.addEventListener("mousedown", () => {
+  zoomInterval = setInterval(() => changeFontSize(-1), 50); // zoom out every 50ms
+});
+zoomOutBtn.addEventListener("mouseup", () => clearInterval(zoomInterval));
+zoomOutBtn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+
 })();

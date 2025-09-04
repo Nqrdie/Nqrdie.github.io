@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +51,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">About</a></li>
-          <li><a href="portfolio.html"class="active">Portfolio</a></li>
+          <li><a href="portfolio.html" class="active">Portfolio</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -114,20 +116,20 @@
                 </div>
 
                 <div class="swiper-slide">
-                  <video controls loading= "lazy" class= "swiper-slide">
-                    <source src = "assets/img/portfolio/Dead Magic/MenuGif.mp4">
+                  <video controls loading="lazy" class="swiper-slide">
+                    <source src="assets/img/portfolio/Dead Magic/MenuGif.mp4">
                   </video>
                 </div>
 
                 <div class="swiper-slide">
-                  <video controls loading= "lazy" class= "swiper-slide">
-                    <source src = "assets/img/portfolio/Dead Magic/CreateLobby.mp4">
+                  <video controls loading="lazy" class="swiper-slide">
+                    <source src="assets/img/portfolio/Dead Magic/CreateLobby.mp4">
                   </video>
                 </div>
 
                 <div class="swiper-slide">
-                  <video controls loading= "lazy" class= "swiper-slide">
-                    <source src = "assets/img/portfolio/Dead Magic/Gameplay.mp4">
+                  <video controls loading="lazy" class="swiper-slide">
+                    <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
                   </video>
                 </div>
 
@@ -142,74 +144,508 @@
               <ul>
                 <li><strong>Project date</strong>: 6th May, 2025</li>
                 <li><strong>Github</strong>: <a href="https://github.com/RgbCat0/ProjectPlaceHolder">Dead Magic</a></li>
+
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
               <h2>Description</h2>
               <p>
-                Dead magic is a multiplayer zombie survival game where you fight against waves of zombies. The game features a variety of spells and upgrades to help you survive. You can play with up to 4 players in a cooperative mode, or you can play solo.
+                Dead magic is a multiplayer zombie survival game where you fight against waves of zombies. The game
+                features a variety of spells and upgrades to help you survive. You can play with up to 4 players in a
+                cooperative mode, or you can play solo.
               </p>
             </div>
           </div>
 
-<!-- Prism.js CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
-<div class="col-lg-4"></div>
+          <div class="portfolio-info">
+            <h3>Code Snippets & Videos</h3>
+            <ul>
+              <li>Below are some code snippets from the project that I made along with related videos demonstrating
+                their
+                functionality</li>
+            </ul>
+          </div>
+          <!-- Prism.js CSS -->
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+            rel="stylesheet" />
 
-<!-- CODE BLOCK instead of image -->
-<div class="code-snippets">
-  <pre><code class="language-csharp">
-// Example Spell Script
-public class Spell {
-    public float cooldown = 5f;
-    private float lastCastTime = 0f;
 
-    public void Cast() {
-        if (Time.time - lastCastTime >= cooldown) {
-            Debug.Log("Spell Cast!");
-            lastCastTime = Time.time;
+
+          <div class="code-snippets">
+            <div class="code-snippet-wrapper">
+              <!-- Zoom buttons -->
+              <div class="zoom-controls">
+                <button id="zoom-in">+</button>
+                <button id="zoom-out">-</button>
+              </div>
+
+              <!-- Fixed container for scrolling -->
+              <div class="pre-container">
+                <pre><code class="language-csharp">
+namespace Player.Attack
+{
+    public class AttackManager : NetworkBehaviour
+    {
+        public enum Spells
+        {
+            Basic,
+            Fireball,
+            Bolt,
+            Arcane
         }
+
+        [Header("Spell Prefabs")]
+        [SerializeField] private GameObject[] spellObject;
+
+        [Header("Spell Indicators")]
+        [SerializeField] private RawImage fireballIndicator;
+        [SerializeField] private Canvas boltIndicator;
+        [SerializeField] private Canvas arcaneIndicator;
+
+        [Header("Other")]
+        [SerializeField] private LayerMask groundMask;
+
+        private readonly Dictionary<Spells, Spell> _spellDictionary = new();
+        private readonly Dictionary<Spells, float> _spellCooldowns = new();
+        private readonly Dictionary<Spells, GameObject> _indicators = new();
+
+        private Spell _selectedSpell;       // currently selected spell SO
+        private Spells _currentSpell;       // currently selected spell enum
+        private Spell _castedSpell;         // spell currently being cast
+        private NetworkObject castedSpell;  // cast spell object
+
+        private PlayerStats _playerStats;
+        private PlayerMovement _playerMovement;
+        private AniManager _playerAnimator;
+        private Camera _camera;
+        private ulong _playerId;
+
+        private int _lastHeldSpell;
+        private bool _isHoldingSpell;
+
+        public bool cd;
+        public bool fireballCd;
+
+        #region Unity Callbacks
+
+        private void Start()
+        {
+            _playerId = NetworkManager.Singleton.LocalClientId;
+            groundMask = LayerMask.GetMask("Ground");
+
+            _playerStats = GetComponent<PlayerStats>();
+            _playerMovement = GetComponent<PlayerMovement>();
+            _playerAnimator = GetComponent<AniManager>();
+            _camera = Camera.main;
+
+            InitializeSpells();
+            InitializeIndicators();
+
+            _selectedSpell = SetSpell(Spells.Basic);
+        }
+
+        private void Update()
+        {
+            if (!IsOwner) return;
+
+            HandleSpellInput();
+            HandleCasting();
+
+            if (!_isHoldingSpell && InputHandler.Instance.attackTriggered)
+            {
+                SetSpell(Spells.Basic);
+                HandleSpellRelease();
+            }
+        }
+
+        #endregion
+
+        #region Initialization
+
+        private void InitializeSpells()
+        {
+            foreach (var spell in Resources.LoadAll<Spell>("Spells"))
+            {
+                if (Enum.TryParse(spell.name, out Spells spellEnum))
+                {
+                    _spellDictionary[spellEnum] = spell;
+                    _spellCooldowns[spellEnum] = 0f;
+                }
+            }
+        }
+
+        private void InitializeIndicators()
+        {
+            _indicators[Spells.Fireball] = fireballIndicator.gameObject;
+            _indicators[Spells.Bolt] = boltIndicator.gameObject;
+            _indicators[Spells.Arcane] = arcaneIndicator.gameObject;
+        }
+
+        #endregion
+
+        #region Spell Selection
+
+        private void HandleSpellInput()
+        {
+            int currentHeldSpell = InputHandler.Instance.spellIndex;
+
+            if (currentHeldSpell != 0 && currentHeldSpell != _lastHeldSpell)
+            {
+                switch (currentHeldSpell)
+                {
+                    case 1: SetSpell(Spells.Fireball); break;
+                    case 2: SetSpell(Spells.Bolt); break;
+                    case 3: SetSpell(Spells.Arcane); break;
+                }
+
+                _isHoldingSpell = true;
+                _lastHeldSpell = currentHeldSpell;
+            }
+
+            if (_isHoldingSpell && currentHeldSpell == 0)
+            {
+                HandleSpellRelease();
+            }
+        }
+
+        private void HandleSpellRelease()
+        {
+            if (cd || fireballCd || _selectedSpell == null) return;
+
+            if (!Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, groundMask)) return;
+            if (Time.time <= _spellCooldowns[_currentSpell]) return;
+
+            Vector3 hitPos = hit.point;
+            _playerAnimator.ChangeAnimation(_currentSpell.ToString(), layer: 1);
+            _castedSpell = _selectedSpell;
+            _spellCooldowns[_currentSpell] = Time.time + _selectedSpell.cooldown;
+
+            if (CheckMana() && IsOwner)
+            {
+                CastSpellRpc(hitPos, (int)_currentSpell, _playerStats.currentMana);
+            }
+
+            _isHoldingSpell = false;
+            _lastHeldSpell = 0;
+            _currentSpell = Spells.Basic;
+        }
+
+        public Spell SetSpell(Spells spellName)
+        {
+            if (!_spellDictionary.TryGetValue(spellName, out var spell) || spell == null)
+            {
+                Debug.LogWarning("Spell not found: " + spellName);
+                return null;
+            }
+
+            if (_playerStats.currentMana >= spell.manaCost && !cd)
+            {
+                _selectedSpell = spell;
+                _currentSpell = spellName;
+                SetIndicator(spellName);
+                UIManager.Instance.UpdateSelectedSpell((int)_currentSpell);
+                return spell;
+            }
+
+            if (!cd)
+            {
+                UIManager.Instance.FlashManaBarBackground();
+                Debug.Log("Not enough mana to cast " + spell.name);
+            }
+
+            _selectedSpell = _spellDictionary[Spells.Basic];
+            _currentSpell = Spells.Basic;
+            UIManager.Instance.UpdateSelectedSpell((int)_currentSpell);
+            SetIndicator(Spells.Basic);
+
+            return _selectedSpell;
+        }
+
+        private void SetIndicator(Spells selectedSpell)
+        {
+            if (cd) return;
+
+            foreach (var indicator in _indicators.Values)
+            {
+                indicator.SetActive(false);
+            }
+
+            if (_indicators.TryGetValue(selectedSpell, out var activeIndicator))
+            {
+                activeIndicator.SetActive(true);
+            }
+        }
+
+        #endregion
+
+        #region Spell Casting
+
+        private bool CheckMana()
+        {
+            if (_playerStats.currentMana >= _castedSpell.manaCost) return true;
+
+            Debug.Log("Not enough mana to cast " + _castedSpell.name);
+            SoundManager.Instance.PlaySound2D("NoMana");
+            return false;
+        }
+
+        [Rpc(SendTo.Server)]
+        private void CastSpellRpc(Vector3 pos, int spellIndex, float currentMana)
+        {
+            if (!_spellDictionary.TryGetValue((Spells)spellIndex, out var spell))
+            {
+                Debug.LogError($"Server: Could not find spell for index {spellIndex}");
+                return;
+            }
+
+            _castedSpell = spell;
+            currentMana -= _castedSpell.manaCost;
+
+            GameObject spawnPosition = (_castedSpell.areaOfEffect == Spell.AreaOfEffect.Cone ||
+                                        _castedSpell.areaOfEffect == Spell.AreaOfEffect.Line ||
+                                        _castedSpell.areaOfEffect == Spell.AreaOfEffect.None)
+                ? spellObject[0]
+                : spellObject[1];
+
+            PlayCastSound(spell);
+
+            if (_castedSpell.areaOfEffect == Spell.AreaOfEffect.None ||
+                _castedSpell.areaOfEffect == Spell.AreaOfEffect.Circle)
+            {
+                castedSpell = NetworkManager.Singleton.SpawnManager.InstantiateAndSpawn(
+                    spell.spellPrefab, _playerId, spawnPosition.transform.position, Quaternion.identity);
+
+                if (castedSpell != null)
+                    castedSpell.GetComponent<Rigidbody>().useGravity = false;
+            }
+
+            if (spell.areaOfEffect != Spell.AreaOfEffect.None) fireballCd = true;
+
+            StartCoroutine(CastSpell(spell, pos));
+            SendInfoToOwnerRpc(currentMana, spell.castTime, pos);
+        }
+
+        private void PlayCastSound(Spell spell)
+        {
+            switch (spell.areaOfEffect)
+            {
+                case Spell.AreaOfEffect.Cone: SoundManager.Instance.PlaySound3D("FrostWave", transform.position); break;
+                case Spell.AreaOfEffect.Circle: SoundManager.Instance.PlaySound3D("FireballWindup", transform.position); break;
+            }
+        }
+
+        [Rpc(SendTo.Owner)]
+        private void SendInfoToOwnerRpc(float mana, float castTime, Vector3 pos)
+        {
+            _playerStats.currentMana = mana;
+            StartCoroutine(SetRotationLocal(castTime, pos));
+        }
+
+        private IEnumerator SetRotationLocal(float castTime, Vector3 pos)
+        {
+            float endTime = Time.time + castTime;
+            while (Time.time < endTime)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(pos - transform.position).normalized;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, castTime * Time.deltaTime * 50f);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        private IEnumerator CastSpell(Spell spell, Vector3 pos)
+        {
+            foreach (var indicator in _indicators.Values)
+                indicator.SetActive(false);
+
+            cd = true;
+            _playerMovement.canMove.Value = false;
+            _isHoldingSpell = false;
+
+            yield return new WaitForSeconds(spell.castTime);
+
+            _playerMovement.canMove.Value = true;
+            _playerAnimator.ChangeAnimation("Idle", layer: 1);
+
+            if (spell.areaOfEffect == Spell.AreaOfEffect.None)
+                SpawnBasicAttackRpc(pos);
+            else
+                SpawnAoeAttackRpc(pos);
+
+            WaitRpc();
+            cd = false;
+        }
+
+        [Rpc(SendTo.Server)]
+        private void SpawnAoeAttackRpc(Vector3 pos)
+        {
+            SpawnAoeAttack(_castedSpell.areaOfEffect, pos);
+        }
+
+        [Rpc(SendTo.Everyone)]
+        private void WaitRpc()
+        {
+            _selectedSpell = SetSpell(Spells.Basic);
+        }
+
+        #endregion
+
+        #region Spell Attacks (Basic, AOE)
+
+        [Rpc(SendTo.Server)]
+        private void SpawnBasicAttackRpc(Vector3 pos) => StartCoroutine(BasicAttack(pos));
+
+        private IEnumerator BasicAttack(Vector3 pos)
+        {
+            SoundManager.Instance.PlaySound3D("BasicAttack", transform.position);
+
+            castedSpell.GetComponent<Basic>().SetCaster(gameObject);
+            castedSpell.GetComponent<Rigidbody>().useGravity = false;
+            castedSpell.GetComponent<Rigidbody>().linearVelocity = (pos - transform.position).normalized * _castedSpell.travelSpeed;
+
+            while (true)
+            {
+                if (castedSpell == null || !castedSpell.IsSpawned || spellObject[0] == null)
+                    yield break;
+
+                float distance = Vector3.Distance(spellObject[0].transform.position, castedSpell.transform.position);
+                if (distance > _castedSpell.range)
+                {
+                    castedSpell.Despawn();
+                    yield break;
+                }
+
+                yield return null;
+            }
+        }
+
+private void SpawnAoeAttack(Spell.AreaOfEffect area, Vector3 targetPos)
+{
+    if (_castedSpell == null || _castedSpell.hitboxPrefab == null) return;
+
+    Vector3 scale = Vector3.one;
+    Quaternion rotation = Quaternion.identity;
+    Vector3 position = transform.position;
+
+    switch (area)
+    {
+        case Spell.AreaOfEffect.Circle:
+            scale = Vector3.one * (_castedSpell.areaOfEffectRadius / 2);
+            position = targetPos;
+            break;
+
+        case Spell.AreaOfEffect.Line:
+            scale = new Vector3(_castedSpell.areaOfEffectRadius / 2, 3, (_castedSpell.range / 4) * 2);
+            rotation = Quaternion.LookRotation(targetPos - transform.position);
+            position += rotation * Vector3.forward * (((_castedSpell.range / 4) * 2 / 10) * 6);
+            break;
+
+        case Spell.AreaOfEffect.Cone:
+            scale = new Vector3((_castedSpell.areaOfEffectRadius / 5) * 11, (_castedSpell.range / 15) * 8.5f, 3);
+            rotation = Quaternion.LookRotation(targetPos - transform.position);
+            rotation = Quaternion.Euler(rotation.eulerAngles.x - 90, rotation.eulerAngles.y + 180, rotation.eulerAngles.z);
+            break;
+    }
+
+    _castedSpell.hitboxPrefab.transform.localScale = scale;
+
+    NetworkObject hitbox = NetworkManager.Singleton.SpawnManager.InstantiateAndSpawn(
+        _castedSpell.hitboxPrefab, _playerId, position, rotation);
+    hitbox.GetComponent<AttackHitbox>().SetCaster(gameObject);
+
+    StartCoroutine(HandleAoeDuration(hitbox, _castedSpell.duration));
+}
+
+private IEnumerator HandleAoeDuration(NetworkObject hitbox, float duration)
+{
+    yield return new WaitForSeconds(duration);
+    hitbox.Despawn(true);
+    fireballCd = false;
+}
+
+        #endregion
+
+        #region Indicator Handling
+
+        private void HandleCasting()
+        {
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, groundMask)) return;
+            Vector3 hitPos = hit.point;
+
+            // Fireball indicator
+            if (_indicators.TryGetValue(Spells.Fireball, out var fireball) && fireball.activeSelf)
+            {
+                var targetIndicator = fireball.transform.Find("TargetIndicator");
+                targetIndicator.position = hitPos;
+                targetIndicator.GetComponent<RectTransform>().localScale = Vector3.one * (_selectedSpell.areaOfEffectRadius / 2);
+            }
+
+            // Other indicators
+            foreach (var indicator in _indicators)
+            {
+                if (!_selectedSpell || indicator.Key == Spells.Fireball) continue;
+
+                var rect = indicator.Value.GetComponent<RectTransform>();
+                switch (_selectedSpell.areaOfEffect)
+                {
+                    case Spell.AreaOfEffect.Line:
+                        rect.localScale = new Vector3(_selectedSpell.areaOfEffectRadius, 3, _selectedSpell.range / 4);
+                        break;
+                    case Spell.AreaOfEffect.Cone:
+                        rect.localScale = new Vector3(_selectedSpell.areaOfEffectRadius, 3, _selectedSpell.range / 3);
+                        break;
+                    case Spell.AreaOfEffect.Circle:
+                        rect.localScale = Vector3.one;
+                        rect.sizeDelta = new Vector2(_selectedSpell.range / 2, _selectedSpell.range / 2);
+                        break;
+                }
+
+                if (indicator.Value.activeSelf)
+                {
+                    Vector3 dir = (hitPos - indicator.Value.transform.position).normalized;
+                    indicator.Value.transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(dir).eulerAngles.y, 0);
+                }
+            }
+        }
+
+        #endregion
+
+        public Spell GetCastedSpell() => _castedSpell;
     }
 }
-  </code></pre>
+      </code></pre>
+              </div>
+            </div>
 
-  <div class="portfolio-info">
-    <h3>Spell Script</h3>
-    <ul>
-      <li><strong>Language</strong>: C#</li>
-      <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game. It handles the casting, cooldown, and effects of each spell.</li>
-    </ul>
-  </div>
-</div>
+            <!-- Right Side: Info and Video -->
+            <div class="right-content">
+              <div class="portfolio-info">
+                <h3>Spell Script</h3>
+                <ul>
+                  <li><strong>Language</strong>: C#</li>
+                  <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game.
+                    It
+                    handles the casting, cooldown, and effects of each spell.</li>
+                </ul>
+              </div>
 
-<!-- Video blocks -->
-<div class="code-snippets">
-  <video controls loading="lazy" class="code-snippets">
-    <source src="assets/img/portfolio/Dead Magic/MenuGif.mp4" type="video/mp4">
-  </video>
-</div>
-
-<div class="code-snippets">
-  <video controls loading="lazy" class="code-snippets">
-    <source src="assets/img/portfolio/Dead Magic/CreateLobby.mp4" type="video/mp4">
-  </video>
-</div>
-
-<div class="code-snippets">
-  <video controls loading="lazy" class="code-snippets">
-    <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4" type="video/mp4">
-  </video>
-</div>
-
-<!-- Prism.js JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-
-
+              <!-- Video below the info -->
+              <div class="portfolio-video">
+                <video controls loading="lazy" width="100%">
+                  <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
+                </video>
+              </div>
+            </div>
           </div>
 
+          <!-- Prism.js JS -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+
         </div>
+
+      </div>
 
       </div>
 
@@ -217,7 +653,7 @@ public class Spell {
 
   </main>
 
-  
+
   <footer id="footer" class="footer dark-background">
     <div class="container">
       <h3 class="sitename">Links</h3>
@@ -241,7 +677,8 @@ public class Spell {
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
