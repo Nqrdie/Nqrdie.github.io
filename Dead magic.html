@@ -140,49 +140,63 @@
 
           <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
+              <h3>Project Information</h3>
               <ul>
-                <li><strong>Project date</strong>: 6th May, 2025</li>
-                <li><strong>Github</strong>: <a href="https://github.com/RgbCat0/ProjectPlaceHolder">Dead Magic</a></li>
-
+                <li><strong>Name</strong>: Dead Magic</li>
+                <li><strong>Details</strong>: <small><i>Unity, PC, Zombie Survivor</i></small></li>
+                <li><strong>Project Date</strong>: 6th May, 2025</li>
+                <li><strong>GitHub</strong>:
+                  <a href="https://github.com/RgbCat0/ProjectPlaceHolder" target="_blank">Dead Magic</a>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Description</h2>
+
+              <h3></h3>
+
+              <h5><strong>Description</strong></h5>
               <p>
                 Dead magic is a multiplayer zombie survival game where you fight against waves of zombies. The game
                 features a variety of spells and upgrades to help you survive. You can play with up to 4 players in a
                 cooperative mode, or you can play solo.
               </p>
+              
+              <h3></h3>
+
+              <h5><strong>Role & Contribution</strong></h5>
+              <ul>
+                <li><strong>Gameplay programming</strong></li>
+                <p>Combat, Movement, Animations, Sound, UI</p>
+                <li></li>
+                <l><strong>Role</strong></l>
+                <p>Level design and balancing</p>
+              </ul>
             </div>
           </div>
+          
 
+        <!-- Prism.js CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet" />
 
-          <div class="portfolio-info">
-            <h3>Code Snippets & Videos</h3>
-            <ul>
-              <li>Below are some code snippets from the project that I made along with related videos demonstrating
-                their
-                functionality</li>
-            </ul>
-          </div>
-          <!-- Prism.js CSS -->
-          <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
-            rel="stylesheet" />
+        <div class="portfolio-info">
+          <h3>Code Snippets & Videos</h3>
+          <ul>
+            <li>Below are some code snippets from the project that I made along with related videos demonstrating
+              their
+              functionality</li>
+          </ul>
+        </div>
 
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
 
-
-          <div class="code-snippets">
-            <div class="code-snippet-wrapper">
-              <!-- Zoom buttons -->
-              <div class="zoom-controls">
-                <button id="zoom-in">+</button>
-                <button id="zoom-out">-</button>
-              </div>
-
-              <!-- Fixed container for scrolling -->
-              <div class="pre-container">
-                <pre><code class="language-csharp">
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
 namespace Player.Attack
 {
     public class AttackManager : NetworkBehaviour
@@ -614,36 +628,175 @@ private IEnumerator HandleAoeDuration(NetworkObject hitbox, float duration)
     }
 }
       </code></pre>
-              </div>
-            </div>
-
-            <!-- Right Side: Info and Video -->
-            <div class="right-content">
-              <div class="portfolio-info">
-                <h3>Spell Script</h3>
-                <ul>
-                  <li><strong>Language</strong>: C#</li>
-                  <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game.
-                    It
-                    handles the casting, cooldown, and effects of each spell.</li>
-                </ul>
-              </div>
-
-              <!-- Video below the info -->
-              <div class="portfolio-video">
-                <video controls loading="lazy" width="100%">
-                  <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
-                </video>
-              </div>
             </div>
           </div>
 
-          <!-- Prism.js JS -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Spell Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game.
+                  It
+                  handles the casting, cooldown, and effects of each spell.</li>
+              </ul>
+            </div>
 
-
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
+              </video>
+            </div>
+          </div>
         </div>
+
+
+
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+public class PlayerMovement : NetworkBehaviour
+  {
+      private PlayerStats _playerStats;
+      private AniManager _playerAnimator;
+      private AttackManager _attackManager;
+      private Vector2 _moveInput;
+      private Rigidbody _rb;
+      private CinemachineCamera _playerCam;
+      public NetworkVariable<bool> canMove;
+
+      [SerializeField]
+      private float moveSpeed;
+
+      [SerializeField]
+      private float rotationSpeed;
+
+      [SerializeField]
+      private float maxVel;
+
+      private void Awake()
+      {
+          canMove.Initialize(this); 
+          canMove.Value = true;
+      }
+
+      private void Start()
+      {
+          
+          if (!IsOwner)
+          {
+              GetComponentInChildren<AudioListener>().enabled = false;
+              enabled = false;
+              return;
+          }
+
+          _playerCam = FindFirstObjectByType<CinemachineCamera>();
+          _playerStats = GetComponent<PlayerStats>();
+          _playerAnimator = GetComponent<AniManager>();
+          _attackManager = GetComponent<AttackManager>();
+          _rb = GetComponent<Rigidbody>();
+
+          _playerCam.Target.TrackingTarget = gameObject.transform;
+          _playerCam.Target.LookAtTarget = gameObject.transform;
+          _playerStats.OnSpeedChanged += f => moveSpeed *= f;
+      }
+
+      public override void OnNetworkSpawn()
+      {
+          base.OnNetworkSpawn();
+          RealRpc();
+      }
+
+      [Rpc(SendTo.Server)]
+      private void RealRpc()
+      {
+          
+          canMove.Value = true; // reset on respawn
+      }
+
+
+      private void Update()
+      {
+          maxVel = moveSpeed;
+          _moveInput = InputHandler.Instance.moveInput;
+          if (_rb.linearVelocity.magnitude < 0.1f && !_attackManager.cd)
+          {
+              _playerAnimator.ChangeAnimation("Idle", 0.2f);
+          }
+      }
+
+      private void FixedUpdate()
+      {
+          if (!canMove.Value) return;
+          Move();
+      }
+
+
+      private void Move()
+      {
+          Vector3 moveDir = new Vector3(_moveInput.x, 0, _moveInput.y);
+          moveDir.Normalize();
+          if (moveDir != Vector3.zero)
+          {
+              _playerAnimator.ChangeAnimation("Walking", layer: 0);
+              Rotation(moveDir);
+              _rb.AddForce(moveDir * moveSpeed, ForceMode.VelocityChange);
+              if (_rb.linearVelocity.magnitude > maxVel)
+              {
+                  _rb.linearVelocity = _rb.linearVelocity.normalized * maxVel;
+              }
+          }
+      }
+
+      private void Rotation(Vector3 moveDir)
+      {
+          Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+          transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+      }
+  }
+}
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Movement Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This is the movement script</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Prism.js JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+
+      </div>
 
       </div>
 

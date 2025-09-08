@@ -750,6 +750,7 @@ section,
   max-width: 100%; /* Remove any restrictions from frameworks */
   margin: 0; /* Remove automatic centering margin */
   padding-left: 100px; /* Control how far left or right the content should be */
+  padding-bottom: 200px;
 }
 
 .hero h2 {
@@ -773,7 +774,7 @@ section,
 }
 
 .hero .social-links a {
-  background-color: color-mix(in srgb, var(--default-color), transparent 90%);
+  background-color: color-mix(in srgb, var(--default-color), transparent 80%);
   color: var(--default-color);
   font-size: 14px;
   width: 40px;
@@ -839,6 +840,60 @@ section,
   margin-right: 5px;
   color: var(--accent-color);
   line-height: 0;
+}
+
+/* About Section as floating card */
+.floating-about {
+  position: absolute;       /* float over hero */
+  bottom: 20px;             /* distance from bottom */
+  left: 20px;               /* distance from left */
+  color: #fff;              /* white text */
+  padding: 30px;
+  border-radius: 10px;
+  z-index: 5;
+  width: 1000px;             /* adjust width as needed */
+  max-width: 90%;           /* responsive */
+  background: transparent;
+
+  /* Responsive */
+@media (max-width: 768px) {
+  .floating-about {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+}
+}
+
+/* About content styling */
+.floating-about h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.floating-about ul {
+  list-style: none;
+  padding: 0;
+}
+
+.floating-about ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.floating-about ul i {
+  color: var(--accent-color);
+  margin-right: 8px;
+  font-size: 16px;
 }
 
 /*--------------------------------------------------------------

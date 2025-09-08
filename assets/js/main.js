@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -52,7 +52,7 @@
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+    navmenu.addEventListener('click', function (e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
@@ -96,7 +96,7 @@
    */
   function aosInit() {
     AOS.init({
-      duration: 600, 
+      duration: 600,
       easing: 'ease-in-out',
       once: true,
       mirror: false
@@ -133,7 +133,7 @@
     new Waypoint({
       element: item,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = item.querySelectorAll('.progress .progress-bar');
         progress.forEach(el => {
           el.style.width = el.getAttribute('aria-valuenow') + '%';
@@ -146,7 +146,7 @@
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -171,13 +171,13 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -186,8 +186,8 @@
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -201,31 +201,36 @@
 
   });
 
-  // Zoom functionality
-const code = document.querySelector(".pre-container pre");
-let fontSize = 16;
-let zoomInterval = null;
+  // For each code-snippet-wrapper, wire up zoom buttons + code block
+  document.querySelectorAll(".code-snippet-wrapper").forEach(wrapper => {
+    const code = wrapper.querySelector(".pre-container pre");
+    const zoomInBtns = wrapper.querySelectorAll(".zoom-in");
+    const zoomOutBtns = wrapper.querySelectorAll(".zoom-out");
 
-// Function to change font size
-function changeFontSize(delta) {
-  fontSize = Math.max(8, fontSize + delta);
-  code.style.fontSize = fontSize + "px";
-}
+    let fontSize = 16;
+    let zoomInterval = null;
 
-// Zoom in button
-const zoomInBtn = document.getElementById("zoom-in");
-zoomInBtn.addEventListener("mousedown", () => {
-  zoomInterval = setInterval(() => changeFontSize(1), 50); // zoom in every 50ms
-});
-zoomInBtn.addEventListener("mouseup", () => clearInterval(zoomInterval));
-zoomInBtn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+    function changeFontSize(delta) {
+      fontSize = Math.max(8, fontSize + delta);
+      code.style.fontSize = fontSize + "px";
+    }
 
-// Zoom out button
-const zoomOutBtn = document.getElementById("zoom-out");
-zoomOutBtn.addEventListener("mousedown", () => {
-  zoomInterval = setInterval(() => changeFontSize(-1), 50); // zoom out every 50ms
-});
-zoomOutBtn.addEventListener("mouseup", () => clearInterval(zoomInterval));
-zoomOutBtn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+    // Zoom in
+    zoomInBtns.forEach(btn => {
+      btn.addEventListener("mousedown", () => {
+        zoomInterval = setInterval(() => changeFontSize(1), 50);
+      });
+      btn.addEventListener("mouseup", () => clearInterval(zoomInterval));
+      btn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+    });
 
+    // Zoom out
+    zoomOutBtns.forEach(btn => {
+      btn.addEventListener("mousedown", () => {
+        zoomInterval = setInterval(() => changeFontSize(-1), 50);
+      });
+      btn.addEventListener("mouseup", () => clearInterval(zoomInterval));
+      btn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
+    });
+  });
 })();
