@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +51,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">About</a></li>
-          <li><a href="portfolio.html"class="active">Portfolio</a></li>
+          <li><a href="portfolio.html" class="active">Portfolio</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -126,31 +128,554 @@
                 </div>
 
                 <div class="swiper-slide">
-                  <video controls loading= "lazy" class= "swiper-slide">
-                    <source src = "assets/img/portfolio/PixelOps/Gameplay.mp4">
+                  <video controls loading="lazy" class="swiper-slide">
+                    <source src="assets/img/portfolio/PixelOps/Gameplay.mp4">
                   </video>
                 </div>
 
+
+
+
               </div>
               <div class="swiper-pagination"></div>
+
+              
             </div>
           </div>
 
-          <div class="col-lg-4">
+                    <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
+              <h3>Project Information</h3>
               <ul>
-                <li><strong>Project date</strong>: 20th March, 2025</li>
-                <li><strong>Github</strong>: <a href="https://github.com/Nqrdie/Pixelops">PixelOps</a></li>
+                <li><strong>Name</strong>: PixelOps</li>
+                <li><strong>Details</strong>: <small><i>Unity, PC, FPS, Multiplayer</i></small></li>
+                <li><strong>Project Date</strong>: 20th March, 2025</li>
+                <li><strong>Project Duration</strong>: ~55h</li>
+                <li><strong>GitHub</strong>:
+                  <a href="https://github.com/Nqrdie/Pixelops" target="_blank">Dead Magic</a>
+                </li>
+              </ul>
+
+              <h3></h3>
+
+              <h5><strong>Description</strong></h5>
+              <p>
+                PixelOps is a game inspired by CounterStrike and Krunker. It is a multiplayer first-person shooter where you can play with up to 10 players. The game features 3 weapons to choose from. I would have liked to polish the game more and add more features however I ran out of time. 
+              </p>
+              
+              <h3></h3>
+
+              <h5><strong>Role & Contribution</strong></h5>
+              <ul>
+                <li><strong>Solo project</strong></li>
+                <li></li>
               </ul>
             </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Description</h2>
-              <p>
-                PixelOps is a game inspired by CounterStrike and Krunker. It is a multiplayer first-person shooter where you can play with up to 10 players. The game features 3 weapons to choose from. I would have liked to polish the game more and add more features however I ran out of time.
-              </p>
-            </div>
           </div>
+
+<!-- Prism.js CSS -->
+              <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+                rel="stylesheet" />
+
+              <div class="portfolio-info">
+                <h3>Code Snippets & Videos</h3>
+                <ul>
+                  <li>Below are some code snippets from the project that I made along with related videos demonstrating
+                    their
+                    functionality</li>
+                </ul>
+              </div>
+
+              <div class="code-snippets">
+                <div class="code-snippet-wrapper">
+                  <!-- Zoom buttons -->
+                  <div class="zoom-controls">
+                    <button class="zoom-in">+</button>
+                    <button class="zoom-out">-</button>
+                  </div>
+
+                  <!-- Fixed container for scrolling -->
+                  <div class="pre-container">
+                    <pre><code class="language-csharp">
+public class GameSystem : NetworkBehaviour
+{
+    public List<GameObject> playerList = new();
+    public List<GameObject> playerListTeam1 = new();
+    public List<GameObject> playerListTeam2 = new();
+    public List<GameObject> DeadPlayerListTeam1 = new();
+    public List<GameObject> DeadPlayerListTeam2 = new();
+    private TextMeshProUGUI roundWonText;
+    public static GameSystem Instance { get; private set; } = null;
+    [SerializeField] private GameObject settingsMenu;
+    public bool settingsTriggered = false;
+
+    private int teamWon = 0;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        roundWonText = GameObject.FindGameObjectWithTag("RoundEndText").GetComponent<TextMeshProUGUI>();
+        roundWonText.gameObject.SetActive(false);
+        StartCoroutine(LateStart());
+    }
+
+    private void Update()
+    {
+        if(InputHandler.Instance.settingsTriggered)
+        {
+            settingsMenu.SetActive(true);
+            settingsTriggered = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            settingsMenu.SetActive(false);
+            settingsTriggered = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    private IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(1f);
+        GetActivePlayers();
+    }
+
+    private void GetActivePlayers()
+    {
+        foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
+        {
+            GameObject player = client.Value.PlayerObject.gameObject;
+            PlayerTeamManager playerTeamManager = player.GetComponent<PlayerTeamManager>();
+
+            playerList.Add(player);
+
+            if (playerTeamManager.GetTeam() == 1)
+                playerListTeam1.Add(player);
+            else if (playerTeamManager.GetTeam() == 2)
+                playerListTeam2.Add(player);
+        }
+    }
+
+    [Rpc(SendTo.Everyone)]  
+    private void KillPlayerRpc()
+    {
+        foreach (GameObject player in playerList)
+        {
+            int playerHealth = player.GetComponent<PlayerHealth>().health;
+
+            if (playerHealth <= 0)
+            {
+                player.SetActive(false);
+            }
+        }
+    }
+    [Rpc(SendTo.Everyone)]
+    public void CheckPlayerDeathsRpc()
+    {
+
+        foreach (GameObject player in playerList)
+        {
+            PlayerTeamManager playerTeamManager = player.GetComponent<PlayerTeamManager>();
+
+            KillPlayerRpc();
+            if (playerTeamManager.GetTeam() == 1 && !player.activeInHierarchy)
+            {
+                if (!DeadPlayerListTeam1.Contains(player))
+                {
+                    DeadPlayerListTeam1.Add(player);
+                }
+            }
+            else if (playerTeamManager.GetTeam() == 2 && !player.activeInHierarchy)
+            {
+                if (!DeadPlayerListTeam2.Contains(player))
+                {
+                    DeadPlayerListTeam2.Add(player);
+                }
+            }
+
+        }
+
+        if (DeadPlayerListTeam1.Count >= playerListTeam1.Count || DeadPlayerListTeam2.Count >= playerListTeam2.Count)
+        {
+            if (DeadPlayerListTeam1.Count == playerListTeam1.Count)
+            {
+                teamWon = 2;
+            }
+            if(DeadPlayerListTeam2.Count == playerListTeam2.Count)
+            {
+                teamWon = 1;
+            }
+            StartCoroutine(ResetTimer());
+            
+        }
+    }
+
+    // RPC doesnt allow return type functions for some reason......
+    private IEnumerator ResetTimer()
+    {
+        BroadcastWonMessageRpc(false);
+        yield return new WaitForSeconds(3f);
+        BroadcastWonMessageRpc(true);
+        ResetRoundRpc();
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void BroadcastWonMessageRpc(bool timeElapsed)
+    {
+        if (!timeElapsed)
+        {
+            roundWonText.text = teamWon == 1 ? "Team 1 Won the round!" : "Team 2 Won the round!";
+            roundWonText.gameObject.SetActive(true);
+        }
+        else
+        {
+            roundWonText.gameObject.SetActive(false);
+        }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void ResetRoundRpc()
+    {
+        foreach (GameObject player in playerList)
+        {
+            player.SetActive(true);
+
+            PlayerTeamManager playerTeamManager = player.GetComponent<PlayerTeamManager>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            Transform gunTransform = player.transform.Find("Gun");
+
+            if (gunTransform == null)
+            {
+                Debug.LogError($"Gun object not found for player: {player.name}");
+                continue;
+            }
+
+            WeaponManager weaponManager = gunTransform.GetComponent<WeaponManager>();
+            if (weaponManager == null)
+            {
+                Debug.LogError($"WeaponManager component not found on Gun object for player: {player.name}");
+                continue;
+            }
+
+            weaponManager.ResetWeaponsRpc();
+            playerHealth.ResetHurtFlash();
+            StartCoroutine(playerTeamManager.SetupPlayerLocations());
+            playerHealth.health = playerHealth.maxHealth;
+            DeadPlayerListTeam1.Remove(player);
+            DeadPlayerListTeam2.Remove(player);
+        }
+    }
+
+
+    public void LeaveButton()
+    {
+        if (IsServer)
+        {
+            LeaveServerRpc();
+        }
+        else
+        {
+            LeaveGame();
+        }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void LeaveServerRpc()
+    {
+        GameObject lobbyMan = GameObject.Find("LobbyManager");
+        SceneManager.MoveGameObjectToScene(lobbyMan, SceneManager.GetSceneByName("Main"));
+        NetworkManager.Singleton.ConnectionApprovalCallback -= LobbyManager.Instance.ApproveConnection;
+        NetworkManager.Singleton.Shutdown();
+        NetworkManager.SceneManager.LoadScene("Title", LoadSceneMode.Single);
+    }
+
+    private void LeaveGame()
+    {
+        GameObject lobbyMan = GameObject.Find("LobbyManager");
+        SceneManager.MoveGameObjectToScene(lobbyMan, SceneManager.GetSceneByName("Main"));
+        NetworkManager.Singleton.ConnectionApprovalCallback -= LobbyManager.Instance.ApproveConnection;
+        NetworkManager.Singleton.Shutdown();
+        SceneManager.LoadScene("Title");
+    }
+}
+      </code></pre>
+                  </div>
+                </div>
+
+                <!-- Right Side: Info and Video -->
+                <div class="right-content">
+                  <div class="portfolio-info">
+                    <h3>Spell Script</h3>
+                    <ul>
+                      <li><strong>Language</strong>: C#</li>
+                      <li><strong>Description</strong>: This script is responsible for the spell mechanics in the game.
+                        It
+                        handles the casting, cooldown, and effects of each spell.</li>
+                    </ul>
+                  </div>
+
+                  <!-- Video below the info -->
+                  <div class="portfolio-video">
+                    <video controls loading="lazy" width="100%">
+                      <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="code-snippets">
+                <div class="code-snippet-wrapper">
+                  <!-- Zoom buttons -->
+                  <div class="zoom-controls">
+                    <button class="zoom-in">+</button>
+                    <button class="zoom-out">-</button>
+                  </div>
+
+                  <!-- Fixed container for scrolling -->
+                  <div class="pre-container">
+                    <pre><code class="language-csharp">
+public class WeaponHandler : MonoBehaviour
+{    
+    // Stats
+    private int maxAmmo;
+    private int currentAmmo = 0;
+    private int reserveAmmo = 0;
+    private int maxReserveAmmo = 0;
+    private int damage;
+    private float fireRate;
+    private float reloadTime;
+    private Mesh weaponMesh;
+
+
+    private TextMeshProUGUI ammoText;
+    private float nextFire;
+    private RawImage hitmarkerImage;
+    private Weapon currentWeapon;
+    private LayerMask layerMask;
+    private TextMeshProUGUI reloadText;
+
+    private WeaponManager weaponManager;
+    private Camera playerCam;
+    private InputHandler input;
+    public PlayerMovement playerMovement;
+    private PlayerTeamManager playerTeamManager;
+    private Stats playerStats;
+
+    private Coroutine reload;
+
+    [SerializeField] private ParticleSystem muzzleFlashParticleSystem;
+    [SerializeField] private AudioSource shootAudioSource;
+
+    private void Start()
+    {
+        playerMovement = transform.parent.GetComponent<PlayerMovement>();
+        input = FindFirstObjectByType<InputHandler>();
+        playerCam = Camera.main;
+
+        if(!playerMovement.IsOwner)
+        {
+            enabled = false;
+            return;
+        }
+
+        weaponManager = GetComponent<WeaponManager>();
+        currentWeapon = weaponManager.ReturnWeapon(0);
+        currentAmmo = weaponManager.ammoValues[weaponManager.ReturnWeapon(0)].currentAmmo;
+        reserveAmmo = weaponManager.ammoValues[weaponManager.ReturnWeapon(0)].reserveAmmo;
+        SwapWeapon(0);
+        playerTeamManager = transform.parent.GetComponent<PlayerTeamManager>();
+
+        layerMask = playerTeamManager.GetTeam() == 1 ? LayerMask.GetMask("Team1") : LayerMask.GetMask("Team2");
+        playerStats = transform.parent.GetComponent<Stats>();
+    }
+    private void Update()
+    {
+        if (input.reloadTriggered)
+        {
+            if (reload == null)
+            {
+                reload = StartCoroutine(Reload());
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
+
+        if(input.shootTriggered && Time.time > nextFire && currentAmmo > 0 && reload == null && !GameSystem.Instance.settingsTriggered)
+        {
+            Shoot();
+        }
+        
+        if (SceneManager.GetActiveScene().name == "Main" && hitmarkerImage == null && ammoText == null)
+        {
+            hitmarkerImage = GameObject.FindWithTag("Hitmarker").GetComponent<RawImage>();
+            ammoText = GameObject.FindWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
+            reloadText = GameObject.FindWithTag("ReloadingText").GetComponent<TextMeshProUGUI>();
+            reloadText.gameObject.SetActive(false);
+        }
+        
+        if(input.switchWeaponAction.triggered)
+        {
+
+            switch (input.switchWeaponIndex)
+            {
+                case 0:
+                    SwapWeapon(0);
+                    break;
+                case 1:
+                    SwapWeapon(1);
+                    break;
+                case 2:
+                    SwapWeapon(2);
+                    break;
+            }
+        }
+
+        ammoText.text = currentAmmo + " / " + reserveAmmo;
+    }
+
+
+    private IEnumerator Reload()
+    {
+        int ammoNeeded = maxAmmo - currentAmmo;
+        if (reserveAmmo >= reserveAmmo - ammoNeeded)
+        {
+            reloadText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(reloadTime);
+            reserveAmmo -= ammoNeeded;
+            currentAmmo += ammoNeeded;
+        }
+        else
+        {
+            reloadText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(reloadTime);
+            currentAmmo += reserveAmmo;
+            reserveAmmo = 0;
+        }
+
+        if (reserveAmmo == 0)
+        {
+            Debug.Log("Out of ammo");
+        }
+        reloadText.gameObject.SetActive(false);
+        reload = null;
+    }
+
+    [Rpc(SendTo.Everyone, RequireOwnership = true)]
+    public void SwapWeapon(int i)
+    {
+        if (reload != null)
+        {
+            StopCoroutine(reload);
+            reload = null;
+        }
+
+        // Store the ammo data of the current weapon before swapping
+        weaponManager.ammoValues[currentWeapon] = (currentAmmo, reserveAmmo);
+        currentWeapon = weaponManager.ReturnWeapon(i);
+
+        currentAmmo = weaponManager.ammoValues[currentWeapon].currentAmmo;
+        reserveAmmo = weaponManager.ammoValues[currentWeapon].reserveAmmo;
+
+        maxAmmo = currentWeapon.maxAmmo;
+        damage = currentWeapon.damage;
+        fireRate = currentWeapon.fireRate;
+        reloadTime = currentWeapon.reloadTime;
+        weaponMesh = currentWeapon.weaponMesh;
+        maxReserveAmmo = currentWeapon.maxReserveAmmo;
+
+        weaponManager.currentWeaponIndex = i;
+
+        weaponManager.SwapMesh(i);
+    }
+
+    private void Shoot()
+    {
+        nextFire = Time.time + fireRate;
+
+        currentAmmo--;
+        muzzleFlashParticleSystem.Play();
+        shootAudioSource.Play();
+        Vector3 rayOrigin = playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        
+        RaycastHit hit;
+
+        if (Physics.Raycast(rayOrigin, playerCam.transform.forward, out hit, Mathf.Infinity, ~layerMask))
+        {
+            GameObject target = hit.collider.transform.gameObject.CompareTag("Player") ? hit.collider.transform.gameObject : null;
+            if (target != null)
+            {
+                
+                target.GetComponent<PlayerHealth>().TakeDamageRpc(damage);
+                if(target.GetComponent<PlayerHealth>().health <= 0)
+                {
+                    playerStats.AddKillRpc();
+                }
+                StartCoroutine(Hitmarker());
+            }
+        }
+    }
+
+
+    protected IEnumerator Hitmarker()
+    {
+        hitmarkerImage.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        hitmarkerImage.enabled = false;
+    }
+
+    public void ResetValues()
+    {
+        currentAmmo = maxAmmo;
+        reserveAmmo = maxReserveAmmo;
+    }
+}
+      </code></pre>
+                  </div>
+                </div>
+
+                <!-- Right Side: Info and Video -->
+                <div class="right-content">
+                  <div class="portfolio-info">
+                    <h3>Movement Script</h3>
+                    <ul>
+                      <li><strong>Language</strong>: C#</li>
+                      <li><strong>Description</strong>: This is the movement script</li>
+                    </ul>
+                  </div>
+
+                  <!-- Video below the info -->
+                  <div class="portfolio-video">
+                    <video controls loading="lazy" width="100%">
+                      <source src="assets/img/portfolio/Dead Magic/Gameplay.mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Prism.js JS -->
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
         </div>
 
@@ -183,7 +708,8 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
