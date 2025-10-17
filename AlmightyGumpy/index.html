@@ -344,68 +344,79 @@ public class GateKeeperText : MonoBehaviour
             <!-- Fixed container for scrolling -->
             <div class="pre-container">
               <pre><code class="language-csharp">
-using Unity.Netcode;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tag : NetworkBehaviour
+public class Movement : MonoBehaviour
 {
-    [SerializeField] private GameObject tagLight;
-    public NetworkVariable<bool> tagged = new NetworkVariable<bool>(
-        false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public float speed = 1f;
+    public Rigidbody rb;
+    Vector3 movement;
+    private GooberState currentState;
+    public Animator anim;
 
-    private float tagCooldown = 1.5f; // Cooldown time in seconds
-    private float lastTagTime = 0f;   // Tracks last tag time
+    public Camera cameraTest;
+
+    public bool movePossible = true;
+
+    public enum GooberState
+    {
+        idle,
+        walking,
+        grab
+    }
 
     private void Start()
     {
-        tagged.OnValueChanged += OnTagChanged;  
+        cameraTest = FindObjectOfType<Camera>();
     }
 
-    private void OnDestroy()
+    void FixedUpdate()
     {
-        tagged.OnValueChanged -= OnTagChanged;  
-    }
-
-    private void OnTagChanged(bool oldValue, bool newValue)
-    {
-        tagLight.SetActive(newValue);  
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (!IsServer) return;  
-
-        if (tagged.Value && other.gameObject.CompareTag("Player"))
+        if (movePossible)
         {
-            if (Time.time - lastTagTime < tagCooldown) return; // Prevent instant swaps
+            // Get the camera's forward and right vectors
+            Vector3 cameraForward = cameraTest.transform.forward;
+            Vector3 cameraRight = cameraTest.transform.right;
 
-            Debug.Log($"Tagging {other.gameObject.name}");
-            lastTagTime = Time.time;  // Update last tag time
-            TransferTag(other.gameObject);
+            // Flatten the vectors (ignore the Y axis)
+            cameraForward.y = 0f;
+            cameraRight.y = 0f;
+
+            // Normalize the vectors
+            cameraForward.Normalize();
+            cameraRight.Normalize();
+
+            // Input
+            movement.x = Input.GetAxis("Horizontal");
+            movement.z = Input.GetAxis("Vertical");
+
+            // Calculate the movement direction based on camera orientation
+            Vector3 moveDirection = cameraForward * movement.z + cameraRight * movement.x;
+            moveDirection.Normalize();
+
+            currentState = GooberState.idle;
+
+            // Rotate player based on movement
+            if (moveDirection != Vector3.zero)
+            {
+                currentState = GooberState.walking;
+                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, Time.deltaTime * 500f);
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                currentState = GooberState.grab;
+            }
+
+            anim.SetFloat("State", (float)currentState);
+
+            // Move the player based on the calculated direction
+            rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
         }
-    }
-
-    private void TransferTag(GameObject newTagger)
-    {
-        Tag newTagScript = newTagger.GetComponent<Tag>();
-        if (newTagScript == null) return;
-
-        tagged.Value = false;
-        newTagScript.SetTaggedServerRpc();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void SetTaggedServerRpc()
-    {
-        tagged.Value = true;
-        Debug.Log($"{gameObject.name} is now tagged!");
-        lastTagTime = Time.time;  // Ensure cooldown applies to the new tagger
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        base.OnNetworkSpawn();
-        tagLight.SetActive(tagged.Value);  
     }
 }
       </code></pre>
