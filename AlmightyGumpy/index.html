@@ -136,26 +136,306 @@
             </div>
           </div>
 
-          <div class="col-lg-4">
+            <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
+              <h3>Project Information</h3>
               <ul>
-                <li><strong>Project date</strong>: 20 January, 2024</li>
-                <li><strong>Github</strong>: <a href="https://github.com/Nqrdie/AlmightyGumpy">AlmightyGumpy</a></li>
+                <li><strong>Name</strong>: AlmightyGumpy</li>
+                <li><strong>Details</strong>: <small><i>Unity, PC, Story, Multiplayer</i></small></li>
+                <li><strong>Project Date</strong>: 20th January, 2024</li>
+                <li><strong>Project Duration</strong>: 36h</li>
+                <li><strong>GitHub</strong>:
+                  <a href="https://github.com/Nqrdie/AlmightyGumpy" target="_blank">AlmightyGumpy</a>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Description</h2>
+
+              <h3></h3>
+
+              <h5><strong>Description</strong></h5>
               <p>
                 The All-mighty Gumpy is a game where you walk around and collect items to fight the big monster that is
                 hiding in the kings bedroom. This game was made for the global game jam 2024 where the theme was make me
                 laugh. I was really proud of this game since it was the first game i made in Unity with a group of
                 artists.
               </p>
+              
+              <h3></h3>
+
+              <h5><strong>Role & Contribution</strong></h5>
+              <ul>
+                <li><strong>Gameplay programming</strong></li>
+                <p>Everything</p>
+                <li></li>
+                <l><strong>Role</strong></l>
+                <p>Since i was the only dev with 7 artists i was responsible for everything about programming</p>
+              </ul>
+            </div>
+
+        </div>
+
+                        <!-- Prism.js CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet" />
+
+        <div class="portfolio-info">
+          <h3>Code Snippets & Videos</h3>
+          <ul>
+            <li>Below are some code snippets from the project that I made along with related videos demonstrating
+              their
+              functionality</li>
+          </ul>
+        </div>
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GateKeeperText : MonoBehaviour
+{
+
+    public int letterPerSecond;
+
+    public TextMeshProUGUI dialogText;
+
+    public string Text;
+    public string TextAfterCollecting;
+
+    public GameObject bar;
+
+    public MonoBehaviour thisScript;
+
+    private bool textBoxActive = false;
+
+    [SerializeField] private bool dialogFinished = false;
+
+    public bool objectsGathered = false;
+
+    public Movement movement;
+    public GameManager gameManager;
+
+    private void Start()
+    {
+        movement = FindObjectOfType<Movement>();
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
+
+    private void Update()
+    {
+        if (textBoxActive == true)
+        {
+            movement.movePossible = false;
+        }
+
+        if (!textBoxActive)
+        {
+            textBoxActive = true;
+
+            if (objectsGathered == false)
+            {
+                
+                StartCoroutine(TypeDialog(Text));
+            }
+            if (objectsGathered == true)
+            {
+                StartCoroutine(TypeDialog(TextAfterCollecting));
+                
+            }
+
+        }
+
+        if (dialogFinished)
+        {
+            StartCoroutine(DeActivate());
+            StartCoroutine(Reset());
+        }
+    }
+
+    public IEnumerator TypeDialog(string dialog)
+    {
+        //dialogText.text = "";
+
+
+        if (!dialogFinished)
+        {
+            print(dialog);
+            foreach (var letter in dialog.ToCharArray())
+            {
+                bar.SetActive(true);
+                dialogText.text += letter;
+                yield return new WaitForSeconds(1f / letterPerSecond);
+            }
+        }
+
+        if (objectsGathered == true)
+        {
+            gameManager.gameDone = true;
+        }
+ 
+
+        dialogFinished = true;
+    }
+
+    IEnumerator DeActivate()
+    {
+        yield return new WaitForSeconds(1);
+        bar.SetActive(false);
+        dialogText.text = "";
+        textBoxActive = false;
+        thisScript.enabled = false;
+        movement.movePossible = true;
+        
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(3f);
+        dialogFinished = false;
+    }
+}
+      </code></pre>
             </div>
           </div>
 
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Dialog Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This script is responsible for the dialogs in the game. At the time since this was my first real project i was pretty proud of this</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="">
+              </video>
+            </div>
+          </div>
         </div>
+
+
+
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using Unity.Netcode;
+using UnityEngine;
+
+public class Tag : NetworkBehaviour
+{
+    [SerializeField] private GameObject tagLight;
+    public NetworkVariable<bool> tagged = new NetworkVariable<bool>(
+        false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    private float tagCooldown = 1.5f; // Cooldown time in seconds
+    private float lastTagTime = 0f;   // Tracks last tag time
+
+    private void Start()
+    {
+        tagged.OnValueChanged += OnTagChanged;  
+    }
+
+    private void OnDestroy()
+    {
+        tagged.OnValueChanged -= OnTagChanged;  
+    }
+
+    private void OnTagChanged(bool oldValue, bool newValue)
+    {
+        tagLight.SetActive(newValue);  
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!IsServer) return;  
+
+        if (tagged.Value && other.gameObject.CompareTag("Player"))
+        {
+            if (Time.time - lastTagTime < tagCooldown) return; // Prevent instant swaps
+
+            Debug.Log($"Tagging {other.gameObject.name}");
+            lastTagTime = Time.time;  // Update last tag time
+            TransferTag(other.gameObject);
+        }
+    }
+
+    private void TransferTag(GameObject newTagger)
+    {
+        Tag newTagScript = newTagger.GetComponent<Tag>();
+        if (newTagScript == null) return;
+
+        tagged.Value = false;
+        newTagScript.SetTaggedServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetTaggedServerRpc()
+    {
+        tagged.Value = true;
+        Debug.Log($"{gameObject.name} is now tagged!");
+        lastTagTime = Time.time;  // Ensure cooldown applies to the new tagger
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        tagLight.SetActive(tagged.Value);  
+    }
+}
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Movement Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This script is responsible for the movement mechanics in the game.</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="">
+              </video>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+              <!-- Prism.js JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
       </div>
 

@@ -132,25 +132,346 @@
             </div>
           </div>
 
-          <div class="col-lg-4">
+
+                    <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
+              <h3>Project Information</h3>
               <ul>
-                <li><strong>Project date</strong>: 31 January, 2025</li>
-                <li><strong>Github</strong>: <a href="https://github.com/JelledeLeeuw/GGJ">BubbleBall</a></li>
+                <li><strong>Name</strong>: BubbleBall</li>
+                <li><strong>Details</strong>: <small><i>Unity, PC, Game of tag, Multiplayer</i></small></li>
+                <li><strong>Project Date</strong>: 31st January, 2025</li>
+                <li><strong>Project Duration</strong>: 36h</li>
+                <li><strong>GitHub</strong>:
+                  <a href="https://github.com/JelledeLeeuw/GGJ" target="_blank">BubbleBall</a>
+                </li>
               </ul>
-            </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Description</h2>
+
+              <h3></h3>
+
+              <h5><strong>Description</strong></h5>
               <p>
-                BubbleBall is a multiplayer game where you play as a bubble and try to tag other players. There is also a king of the hill gamemode where you need to push players off the map and be the last one standing to win. This was a really fun game to make and it was made in 48 hours for the Global Game Jam 2025.
+                BubbleBall is a multiplayer tag game in the theme of bubbles. This was a really fun game to make and it was for the Global Game Jam 2025.
               </p>
+              
+              <h3></h3>
+
+              <h5><strong>Role & Contribution</strong></h5>
+              <ul>
+                <li><strong>Gameplay programming</strong></li>
+                <p>Multiplayer, Movement</p>
+                <li></li>
+                <l><strong>Role</strong></l>
+                <p>Multiplayer aspect of tag, teams and movement</p>
+              </ul>
             </div>
           </div>
 
         </div>
 
+                <!-- Prism.js CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet" />
+
+        <div class="portfolio-info">
+          <h3>Code Snippets & Videos</h3>
+          <ul>
+            <li>Below are some code snippets from the project that I made along with related videos demonstrating
+              their
+              functionality</li>
+          </ul>
+        </div>
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using System.Collections;
+using Developers.Scripts;
+using Unity.Netcode;
+using Unity.Netcode.Components;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class PlayerMovement : NetworkBehaviour
+{
+    [Header("Movement variables")]
+    [SerializeField]
+    private float walkSpeed;
+
+    [SerializeField]
+    private float sprintMultiplier;
+
+    [SerializeField]
+    private float rotationSpeed;
+
+    [SerializeField]
+    private float maxVelocity;
+
+    private Vector3 currentMovement;
+
+    private InputHandler inputHandler;
+
+    private CharacterController characterController;
+
+    private NetworkRigidbody rb;
+
+    private Camera mainCamera; // caches the main camera
+
+    private bool _isJumping;
+
+    private bool _isGrounded;
+
+    private void Start()
+    {
+        // characterController = gameObject.GetComponent<CharacterController>();
+        if (!IsOwner)
+        {
+            enabled = false;
+            return;
+        }
+
+        //Cursor.lockState = CursorLockMode.Locked;
+        inputHandler = FindFirstObjectByType<InputHandler>();
+        mainCamera = Camera.main;
+        mainCamera.GetComponent<SetCameraTarget>().AssignTarget(transform);
+
+        rb = gameObject.GetComponent<NetworkRigidbody>();
+        GameManager.Instance.AddPlayer(this);
+    }
+
+    [Rpc(SendTo.Authority)]
+    public void GameStartRpc()
+    {
+        GameManager.Instance.PlayerReady();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!IsOwner || GameManager.Instance.gameState != GameState.Playing)
+            return;
+        HandleMovement();
+        Jump();
+    }
+
+    private void HandleMovement()
+    {
+        // Movement input from player
+        Vector3 movementInput = new Vector3(inputHandler.moveInput.x, 0, inputHandler.moveInput.y);
+        movementInput.Normalize();
+
+        // Get the forward and right position of the camera while setting the y to 0 since we dont want to rotate on the y-axis
+        Vector3 cameraForward = mainCamera.transform.forward;
+        cameraForward.y = 0;
+        cameraForward.Normalize();
+
+        Vector3 cameraRight = mainCamera.transform.right;
+        cameraRight.y = 0;
+        cameraRight.Normalize();
+
+        // Calculate the direction based on where the player is going and looking
+        Vector3 worldDirection = cameraRight * movementInput.x + cameraForward * movementInput.z;
+
+        // Apply it to a class variable so we can use it in rotation
+        currentMovement.x = worldDirection.x * walkSpeed;
+        currentMovement.z = worldDirection.z * walkSpeed;
+
+        rb.Rigidbody.AddForce(currentMovement * Time.deltaTime, ForceMode.Impulse);
+        Vector3 horizontalVelocity = new Vector3(rb.Rigidbody.linearVelocity.x, 0, rb.Rigidbody.linearVelocity.z);
+        if (horizontalVelocity.magnitude > maxVelocity && _isJumping == false)
+        {
+            Vector3 clampedVelocity = horizontalVelocity.normalized * maxVelocity;
+            rb.Rigidbody.linearVelocity = new Vector3(
+                clampedVelocity.x,
+                rb.Rigidbody.linearVelocity.y,
+                clampedVelocity.z
+            );
+        }
+
+        HandleRotation(worldDirection, cameraForward);
+    }
+
+    private void Jump()
+    {
+        if(inputHandler.jumpTriggered == true && _isJumping == false && _isGrounded == true)
+        {
+            Debug.Log("yess");
+            StartCoroutine(Jumping());
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
+        }
+    }
+
+    private void HandleRotation(Vector3 worldDirection, Vector3 cameraForward)
+    {
+        if (worldDirection.magnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(worldDirection);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
+    }
+
+    private IEnumerator Jumping()
+    {
+        _isJumping = true;
+        rb.Rigidbody.AddForce(0,20,0,ForceMode.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        _isJumping = false;
+    }
+}
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Spell Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This script is responsible for the movement mechanics in the game.</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using Unity.Netcode;
+using UnityEngine;
+
+public class Tag : NetworkBehaviour
+{
+    [SerializeField] private GameObject tagLight;
+    public NetworkVariable<bool> tagged = new NetworkVariable<bool>(
+        false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    private float tagCooldown = 1.5f; // Cooldown time in seconds
+    private float lastTagTime = 0f;   // Tracks last tag time
+
+    private void Start()
+    {
+        tagged.OnValueChanged += OnTagChanged;  
+    }
+
+    private void OnDestroy()
+    {
+        tagged.OnValueChanged -= OnTagChanged;  
+    }
+
+    private void OnTagChanged(bool oldValue, bool newValue)
+    {
+        tagLight.SetActive(newValue);  
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!IsServer) return;  
+
+        if (tagged.Value && other.gameObject.CompareTag("Player"))
+        {
+            if (Time.time - lastTagTime < tagCooldown) return; // Prevent instant swaps
+
+            Debug.Log($"Tagging {other.gameObject.name}");
+            lastTagTime = Time.time;  // Update last tag time
+            TransferTag(other.gameObject);
+        }
+    }
+
+    private void TransferTag(GameObject newTagger)
+    {
+        Tag newTagScript = newTagger.GetComponent<Tag>();
+        if (newTagScript == null) return;
+
+        tagged.Value = false;
+        newTagScript.SetTaggedServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetTaggedServerRpc()
+    {
+        tagged.Value = true;
+        Debug.Log($"{gameObject.name} is now tagged!");
+        lastTagTime = Time.time;  // Ensure cooldown applies to the new tagger
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        tagLight.SetActive(tagged.Value);  
+    }
+}
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Tag Script</h3>
+              <ul>
+                <li><strong>Language</strong>: C#</li>
+                <li><strong>Description</strong>: This is the tag script which has multiplayer implemented</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+              <video controls loading="lazy" width="100%">
+                <source src="">
+              </video>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+              <!-- Prism.js JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 
     </section><!-- /Portfolio Details Section -->
 
@@ -195,6 +516,7 @@
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  
 
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
