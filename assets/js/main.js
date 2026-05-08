@@ -233,4 +233,217 @@
       btn.addEventListener("mouseleave", () => clearInterval(zoomInterval));
     });
   });
+
+  /**
+   * Enhanced Interactive Features
+   */
+
+  // Parallax effect on scroll for enhanced depth
+  function paralaxEffect() {
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    if (parallaxElements.length === 0) return;
+
+    parallaxElements.forEach(el => {
+      const scrollPosition = window.scrollY;
+      const elementOffset = el.getBoundingClientRect().top;
+      const distance = scrollPosition + elementOffset;
+      const yPos = distance * 0.5;
+      el.style.backgroundPosition = `center ${yPos}px`;
+    });
+  }
+
+  window.addEventListener('scroll', paralaxEffect);
+
+  // Add ripple effect to buttons and interactive elements
+  function addRippleEffect() {
+    const buttons = document.querySelectorAll('button, .btn, [role="button"], .details-link, .preview-link');
+    
+    buttons.forEach(btn => {
+      if (btn.classList.contains('ripple-added')) return;
+      btn.classList.add('ripple-added');
+      
+      btn.addEventListener('mouseenter', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  }
+
+  // Add observer for smooth animations when elements come into view
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        
+        // Trigger ripple effects
+        if (entry.target.querySelector('button, .btn, [role="button"]')) {
+          addRippleEffect();
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections and portfolio items
+  document.querySelectorAll('section, .portfolio-item, .service-item, .resume-item, .testimonial-item, .features-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Enhanced scroll interactions for stats/counters
+  let hasCountedUp = false;
+  const statsSection = document.querySelector('.stats');
+  
+  if (statsSection) {
+    const statObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !hasCountedUp) {
+        hasCountedUp = true;
+        const statsItems = document.querySelectorAll('.stats-item span');
+        
+        statsItems.forEach(item => {
+          const finalValue = parseInt(item.getAttribute('data-purecounter'));
+          if (!isNaN(finalValue)) {
+            let currentValue = 0;
+            const increment = finalValue / 50;
+            const interval = setInterval(() => {
+              currentValue += increment;
+              if (currentValue >= finalValue) {
+                item.textContent = finalValue;
+                clearInterval(interval);
+              } else {
+                item.textContent = Math.floor(currentValue);
+              }
+            }, 30);
+          }
+        });
+      }
+    }, { threshold: 0.5 });
+    
+    statObserver.observe(statsSection);
+  }
+
+  // Smooth page transitions
+  document.querySelectorAll('a[href*="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+
+  // Add keyboard navigation support
+  document.addEventListener('keydown', function(e) {
+    // ESC key closes mobile nav
+    if (e.key === 'Escape' && document.querySelector('body.mobile-nav-active')) {
+      mobileNavToogle();
+    }
+    
+    // Tab key for accessibility
+    if (e.key === 'Tab') {
+      document.body.classList.add('keyboard-nav');
+    }
+  });
+
+  document.addEventListener('mousedown', function() {
+    document.body.classList.remove('keyboard-nav');
+  });
+
+  // Resize observer for responsive adjustments
+  const resizeObserver = new ResizeObserver(() => {
+    // Recalculate layouts on resize
+    const isotopeContainers = document.querySelectorAll('.isotope-container');
+    if (isotopeContainers.length > 0 && window.Isotope) {
+      isotopeContainers.forEach(container => {
+        if (container.Isotope) {
+          container.Isotope.layout();
+        }
+      });
+    }
+  });
+
+  // Observe for responsive changes
+  if (document.body) {
+    resizeObserver.observe(document.body);
+  }
+
+  // Add loading state for slower networks
+  document.addEventListener('ajaxStart', () => {
+    document.body.classList.add('loading');
+  });
+
+  document.addEventListener('ajaxStop', () => {
+    document.body.classList.remove('loading');
+  });
+
+  // Enhance form interactions
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    const inputs = form.querySelectorAll('input, textarea, select');
+    
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement?.classList.add('focused');
+      });
+      
+      input.addEventListener('blur', function() {
+        if (!this.value) {
+          this.parentElement?.classList.remove('focused');
+        }
+      });
+      
+      input.addEventListener('change', function() {
+        this.parentElement?.classList.add('has-value');
+      });
+    });
+  });
+
+  // Responsive table adjustments
+  const tables = document.querySelectorAll('table');
+  tables.forEach(table => {
+    if (window.innerWidth < 768) {
+      table.classList.add('table-responsive');
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    tables.forEach(table => {
+      if (window.innerWidth < 768) {
+        table.classList.add('table-responsive');
+      } else {
+        table.classList.remove('table-responsive');
+      }
+    });
+  });
+
+  // Performance: Lazy load images
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+          }
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+  }
 })();

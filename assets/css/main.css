@@ -1484,15 +1484,211 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details Section
+# Portfolio Details Section - Enhanced Responsive
 --------------------------------------------------------------*/
+.portfolio-details .portfolio-details-slider {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 .portfolio-details .portfolio-details-slider img {
   position: relative;
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: contain; /* Ensures the image fits within the container without stretching */
-  background-color: black; /* Adds black borders where necessary */
+  object-fit: contain;
+  background-color: black;
+}
+
+.portfolio-details .portfolio-info {
+  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%);
+  border-left: 4px solid var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-info:hover {
+  box-shadow: 0 10px 35px rgba(142, 24, 210, 0.15);
+  transform: translateX(5px);
+}
+
+.portfolio-details .portfolio-info h3 {
+  color: var(--heading-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.portfolio-details .portfolio-info h3 i {
+  font-size: 28px;
+}
+
+.portfolio-details .portfolio-info ul li {
+  list-style: none;
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  transition: all 0.2s ease;
+}
+
+.portfolio-details .portfolio-info ul li:last-child {
+  border-bottom: none;
+}
+
+.portfolio-details .portfolio-info ul li:hover {
+  padding-left: 10px;
+  color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.portfolio-details .portfolio-info a:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  transform: translateX(3px);
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, transparent 50%, var(--accent-color) 100%);
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .portfolio-details .portfolio-info {
+    padding: 20px;
+  }
+
+  .portfolio-details .portfolio-info h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .zoom-controls {
+    top: 3px;
+    right: 3px;
+    gap: 3px;
+  }
+
+  .zoom-controls button {
+    padding: 2px 5px;
+    font-size: 12px;
+  }
+
+  .portfolio-details .portfolio-info h3 {
+    font-size: 16px;
+  }
+
+  .portfolio-details .portfolio-info ul li {
+    font-size: 14px;
+  }
+
+  .divider {
+    margin: 15px 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Responsive Contact & Form Section
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+  .contact .info-item {
+    margin-bottom: 20px;
+  }
+
+  .contact .php-email-form {
+    padding: 20px;
+  }
+
+  .contact .info-item .icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Portfolio Filter Responsive
+--------------------------------------------------------------*/
+@media (max-width: 576px) {
+  .portfolio .portfolio-filters {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .portfolio .portfolio-filters li {
+    font-size: 12px;
+    margin: 0 3px 5px 3px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--surface-color), transparent 30%);
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    transition: all 0.3s ease;
+  }
+
+  .portfolio .portfolio-filters li:hover,
+  .portfolio .portfolio-filters li.filter-active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+}
+
+/*--------------------------------------------------------------
+# Enhanced Animation Timing & Accessibility
+--------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Dark mode specific enhancements
+--------------------------------------------------------------*/
+.dark-background .portfolio-details .portfolio-info {
+  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--surface-color), var(--background-color), 50%) 100%);
+}
+
+.dark-background .divider {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-color), transparent 30%) 0%, transparent 50%, color-mix(in srgb, var(--accent-color), transparent 30%) 100%);
+}
+
+/*--------------------------------------------------------------
+# Print styles
+--------------------------------------------------------------*/
+@media print {
+  .header,
+  .footer,
+  .scroll-top,
+  .mobile-nav-toggle {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .portfolio-details {
+    box-shadow: none;
+  }
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {
@@ -1750,4 +1946,493 @@ section,
 .code-snippets-divider {
   width: 1000px;
   background-color: color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+/*--------------------------------------------------------------
+# Enhanced Interactive Animations & Responsive Design
+--------------------------------------------------------------*/
+
+/* Smooth transitions and transforms */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glowing effect for accent elements */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--accent-color);
+    box-shadow: 0 0 10px rgba(142, 24, 210, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--accent-color);
+    box-shadow: 0 0 20px rgba(142, 24, 210, 0.6);
+  }
+}
+
+/* Fade in from below animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale up animation */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Float animation for cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Portfolio cards - enhanced interactivity */
+.portfolio-item {
+  animation: fadeInUp 0.6s ease backwards;
+}
+
+.portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+.portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+.portfolio-item:nth-child(6) { animation-delay: 0.6s; }
+
+.portfolio-content {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(142, 24, 210, 0.4);
+}
+
+.portfolio-content img {
+  transition: transform 0.4s ease;
+}
+
+.portfolio-content:hover img {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Enhanced portfolio info overlay */
+.portfolio-info {
+  backdrop-filter: blur(8px) brightness(0.7);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Button hover effects */
+button, 
+[role="button"],
+.details-link,
+.preview-link {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button::before,
+[role="button"]::before,
+.details-link::before,
+.preview-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before,
+[role="button"]:hover::before,
+.details-link:hover::before,
+.preview-link:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+  .portfolio .portfolio-content {
+    padding-top: 56.25%;
+  }
+
+  .code-snippets {
+    flex-direction: column;
+  }
+
+  .code-snippet-wrapper {
+    width: 100%;
+  }
+
+  .right-content {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .pre-container {
+    max-height: 400px;
+    height: auto;
+  }
+
+  .code-snippets pre {
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 300px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .hero .container {
+    padding-left: 20px;
+  }
+
+  .hero h2 {
+    font-size: 40px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio .portfolio-content {
+    padding-top: 75%;
+  }
+
+  .code-snippets {
+    gap: 10px;
+  }
+
+  .code-snippet-wrapper {
+    width: 100%;
+  }
+
+  .right-content {
+    width: 100%;
+    gap: 15px;
+  }
+
+  .pre-container {
+    height: auto;
+    max-height: 350px;
+  }
+
+  .code-snippets pre {
+    min-width: 100%;
+    max-width: 100%;
+    font-size: 12px;
+    min-height: 250px;
+  }
+
+  .zoom-controls {
+    top: 5px;
+    right: 5px;
+  }
+
+  .zoom-controls button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero .container {
+    padding-left: 15px;
+    padding-bottom: 100px;
+  }
+}
+
+/* Service cards with hover lift effect */
+.service-item {
+  animation: fadeInUp 0.6s ease backwards;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 40px rgba(142, 24, 210, 0.3) !important;
+}
+
+/* Resume items with timeline animation */
+.resume-item {
+  animation: slideInLeft 0.6s ease backwards;
+}
+
+.resume-item:nth-child(1) { animation-delay: 0.1s; }
+.resume-item:nth-child(2) { animation-delay: 0.2s; }
+.resume-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* Skills section enhancements */
+.skills .progress-bar {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 30%));
+  box-shadow: 0 0 10px rgba(142, 24, 210, 0.5);
+}
+
+/* Features with scale animation */
+.features-item {
+  animation: scaleUp 0.5s ease backwards;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.features-item:nth-child(1) { animation-delay: 0.1s; }
+.features-item:nth-child(2) { animation-delay: 0.2s; }
+.features-item:nth-child(3) { animation-delay: 0.3s; }
+.features-item:nth-child(4) { animation-delay: 0.4s; }
+
+.features-item:hover {
+  transform: scale(1.05);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 25px rgba(142, 24, 210, 0.2);
+}
+
+/* Stats section with counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats-item {
+  animation: countUp 0.8s ease-out;
+}
+
+.stats-item:nth-child(1) { animation-delay: 0.1s; }
+.stats-item:nth-child(2) { animation-delay: 0.2s; }
+.stats-item:nth-child(3) { animation-delay: 0.3s; }
+.stats-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Testimonial cards float effect */
+.testimonial-item {
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.testimonial-item:hover {
+  animation: none;
+  transform: translateY(-5px);
+}
+
+/* Enhanced link hover effects */
+a {
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Mobile menu animation */
+.mobile-nav-toggle {
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle:hover {
+  transform: scale(1.1);
+  color: var(--accent-color);
+}
+
+/* Improved form inputs */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 15px rgba(142, 24, 210, 0.3);
+  outline: none;
+}
+
+/* Improved responsive container sizing */
+@media (max-width: 1399px) {
+  .container-xl {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .portfolio-content {
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 95%;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  section, .section {
+    padding: 30px 0;
+  }
+
+  .section-title h2 {
+    font-size: 12px;
+  }
+
+  .section-title div {
+    font-size: 20px;
+  }
+}
+
+/* Parallax effect for hero background */
+.hero img {
+  animation: subtle-shift 20s ease-in-out infinite;
+}
+
+@keyframes subtle-shift {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Tooltip effects */
+[data-bs-toggle="tooltip"] {
+  position: relative;
+}
+
+[data-bs-toggle="tooltip"]:hover::after {
+  content: attr(data-bs-title);
+  position: absolute;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Loading state animation */
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Improved transitions for large desktop */
+@media (min-width: 1200px) {
+  .portfolio-content:hover {
+    transform: translateY(-15px);
+  }
+
+  .service-item:hover {
+    transform: translateY(-20px);
+  }
 }
