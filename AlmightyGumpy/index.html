@@ -4,13 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>The All-Mighty Gumpy</title>
-  <meta name="description" content="">
+  <title>The All-Mighty Gumpy | Roy van Leeuwen</title>
+  <meta name="description" content="The All-Mighty Gumpy by Roy van Leeuwen: a Unity game project with screenshots, media and development notes.">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070d'/%3E%3Cpath d='M18 41 8 31l10-10 4 4-6 6 6 6-4 4Zm28 0-4-4 6-6-6-6 4-4 10 10-10 10ZM27 46l-5-1 15-28 5 1-15 28Z' fill='%23a855f7'/%3E%3C/svg%3E" rel="icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -43,15 +42,17 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="../index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="../assets/img/logo.png" alt=""> -->
+      <a href="../index.html" class="logo d-flex align-items-center" aria-label="Roy van Leeuwen home">
+        <span class="brand-logo" aria-hidden="true"></span>
       </a>
 
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu" aria-label="Project navigation">
         <ul>
-          <li><a href="../index.html">About</a></li>
-          <li><a href="../Portfolio" class="active">Portfolio</a></li>
+          <li><a href="../index.html" class="page-link">Home</a></li>
+          <li class="nav-page-item"><a href="../Portfolio/" class="page-link">Portfolio</a></li>
+          <li><a href="#project-title" class="page-link">Almighty Gumpy</a></li>
+          <li><a href="#project-information" class="section-link active">Information</a></li>
+          <li><a href="#project-code" class="section-link">Code</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -62,30 +63,20 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <div id="project-title" class="page-title project-page-title" data-aos="fade">
       <div class="heading">
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
-              <h1>The All-Mighty Gumpy</h1>
+              <h1>Almighty Gumpy</h1>
             </div>
           </div>
         </div>
       </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../Portfolio">Portfolio</a></li>
-            <li class="current">The All-Mighty Gumpy</li>
-          </ol>
-        </div>
-      </nav>
     </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
-
+    <section id="portfolio-details" class="portfolio-details section dev-section project-detail-section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
@@ -112,11 +103,11 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio//Gumpy/GumpyMain.jpg" alt="">
+                  <img src="../assets/img/portfolio/Gumpy/GumpyMain.jpg" alt="The All-Mighty Gumpy GumpyMain screenshot">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio/Gumpy/GumpyHouse.png" alt="">
+                  <img src="../assets/img/portfolio/Gumpy/GumpyHouse.png" alt="The All-Mighty Gumpy GumpyHouse screenshot">
                 </div>
 
                 <div class="swiper-slide">
@@ -137,19 +128,17 @@
           </div>
 
             <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+            <div id="project-information" class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Project Information</h3>
               <ul>
-                <li><strong>Name</strong>: AlmightyGumpy</li>
-                <li><strong>Details</strong>: <small><i>Unity, PC, Story, Multiplayer</i></small></li>
-                <li><strong>Project Date</strong>: 20th January, 2024</li>
-                <li><strong>Project Duration</strong>: 36h</li>
-                <li><strong>GitHub</strong>:
+                <li><strong>Name</strong> AlmightyGumpy</li>
+                <li><strong>Details</strong> <small><i>Unity, PC, Story, Multiplayer</i></small></li>
+                <li><strong>Project Date</strong> 20th January, 2024</li>
+                <li><strong>Project Duration</strong> 36h</li>
+                <li><strong>GitHub</strong>
                   <a href="https://github.com/Nqrdie/AlmightyGumpy" target="_blank">AlmightyGumpy</a>
                 </li>
               </ul>
-
-              <h3></h3>
 
               <h5><strong>Description</strong></h5>
               <p>
@@ -159,14 +148,11 @@
                 artists.
               </p>
               
-              <h3></h3>
-
               <h5><strong>Role & Contribution</strong></h5>
               <ul>
                 <li><strong>Gameplay programming</strong></li>
                 <p>Everything</p>
-                <li></li>
-                <l><strong>Role</strong></l>
+                                <li><strong>Role</strong></li>
                 <p>Since i was the only dev with 7 artists i was responsible for everything about programming</p>
               </ul>
             </div>
@@ -177,7 +163,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
           rel="stylesheet" />
 
-        <div class="portfolio-info">
+        <div id="project-code" class="portfolio-info">
           <h3>Code Snippets & Videos</h3>
           <ul>
             <li>Below are some code snippets from the project that I made along with related videos demonstrating
@@ -316,8 +302,8 @@ public class GateKeeperText : MonoBehaviour
             <div class="portfolio-info">
               <h3>Dialog Script</h3>
               <ul>
-                <li><strong>Language</strong>: C#</li>
-                <li><strong>Description</strong>: This script is responsible for the dialogs in the game. At the time since this was my first real project i was pretty proud of this</li>
+                <li><strong>Language</strong> C#</li>
+                <li><strong>Description</strong> This script is responsible for the dialogs in the game. At the time since this was my first real project i was pretty proud of this</li>
               </ul>
             </div>
 
@@ -428,8 +414,8 @@ public class Movement : MonoBehaviour
             <div class="portfolio-info">
               <h3>Movement Script</h3>
               <ul>
-                <li><strong>Language</strong>: C#</li>
-                <li><strong>Description</strong>: This script is responsible for the movement mechanics in the game.</li>
+                <li><strong>Language</strong> C#</li>
+                <li><strong>Description</strong> This script is responsible for the movement mechanics in the game.</li>
               </ul>
             </div>
 
@@ -463,14 +449,7 @@ public class Movement : MonoBehaviour
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Personal</strong> <span>All Rights Reserved</span>
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          <span>Copyright</span> <strong class="px-1 sitename">Roy van Leeuwen</strong> <span>All Rights Reserved</span>
         </div>
       </div>
     </div>

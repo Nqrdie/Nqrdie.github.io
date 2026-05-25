@@ -4,13 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Projects | Roy van Leeuwen</title>
+  <meta name="description" content="Projects by Roy van Leeuwen: Unity, C#, multiplayer prototypes, p5.js games and technical breakdowns.">
+  <meta name="keywords" content="Roy van Leeuwen projects, Unity portfolio, C# games, p5.js games">
 
   <!-- Favicons -->
-  <link href="" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070d'/%3E%3Cpath d='M18 41 8 31l10-10 4 4-6 6 6 6-4 4Zm28 0-4-4 6-6-6-6 4-4 10 10-10 10ZM27 46l-5-1 15-28 5 1-15 28Z' fill='%23a855f7'/%3E%3C/svg%3E" rel="icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -26,14 +25,6 @@
 
   <!-- Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Personal
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Updated: Nov 04 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="portfolio-page">
@@ -41,15 +32,14 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="../index.html" class="logo d-flex align-items-center" aria-label="Roy van Leeuwen home">
+        <span class="brand-logo" aria-hidden="true"></span>
       </a>
       
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu" aria-label="Primary navigation">
         <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="/index.html"class="active">Portfolio</a></li>
+          <li><a href="../index.html" class="page-link">Home</a></li>
+          <li class="nav-page-item"><a href="./" class="page-link active">Portfolio</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -59,28 +49,7 @@
 
   <main class="main">
 
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Portfolio</h1>
-              <p class="mb-0">Here is everything i have worked on so far.</p>
-              <i>Sorted by most recent.</i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="../index.html">About</a></li>
-            <li class="current">Portfolio</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
+
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
@@ -100,69 +69,75 @@
 
         <!-- Dead Magic -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-unity">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/Dead Magic/Main.png" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>Dead Magic</p>
-        <a href="/Dead Magic/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../Dead%20Magic/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open Dead Magic project details">
+      <img src="../assets/img/portfolio/Dead Magic/Main.png" alt="Dead Magic project screenshot">
+      <div>
+        <span>Unity · Multiplayer · Combat</span>
+        <h3>Dead Magic</h3>
+        <p>Co-op zombie survival with spells, upgrades, combat and level balancing.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
       <!-- PixelOps -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-unity">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/PixelOps/MainMenu.png" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>PixelOps</p>
-        <a href="/PixelOps/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../PixelOps/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open PixelOps project details">
+      <img src="../assets/img/portfolio/PixelOps/MainMenu.png" alt="PixelOps main menu screenshot">
+      <div>
+        <span>Unity · FPS · Multiplayer</span>
+        <h3>PixelOps</h3>
+        <p>Multiplayer FPS with lobby flow, weapons, teams and score systems.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
         <!-- BubbleBall -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-unity">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/BubbleBall/Main.png" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>BubbleBall</p>
-        <a href="/BubbleBall/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../BubbleBall/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open BubbleBall project details">
+      <img src="../assets/img/portfolio/BubbleBall/Main.png" alt="BubbleBall project screenshot">
+      <div>
+        <span>Unity · Arena · Multiplayer</span>
+        <h3>BubbleBall</h3>
+        <p>Multiplayer game of tag with bubble physics.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
   <!-- Almighty Gumpy -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-unity">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/Gumpy/GumpyMain.jpg" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>The All-Mighty Gumpy</p>
-        <a href="/AlmightyGumpy/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../AlmightyGumpy/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open The All-Mighty Gumpy project details">
+      <img src="../assets/img/portfolio/Gumpy/GumpyMain.jpg" alt="The All-Mighty Gumpy project screenshot">
+      <div>
+        <span>Unity · Adventure</span>
+        <h3>The All-Mighty Gumpy</h3>
+        <p>A Story focused game where you find objects.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
 
   <!-- Tic Tac Toe -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-p5js">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/TicTacToe/TicTacToeMain.png" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>Tic Tac Toe</p>
-        <a href="/TicTacToe/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../TicTacToe/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open Tic Tac Toe project details">
+      <img src="../assets/img/portfolio/TicTacToe/TicTacToeMain.png" alt="Tic Tac Toe project screenshot">
+      <div>
+        <span>p5.js · Logic</span>
+        <h3>Tic Tac Toe</h3>
+        <p>Classic board game.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
   <!-- Rock Dodge -->
   <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-p5js">
-    <div class="portfolio-content h-100">
-      <img src="../assets/img/portfolio/RockDodge/rockdodge2p.png" class="img-fluid" alt="">
-      <div class="portfolio-info">
-        <p>Rock Dodge</p>
-        <a href="/RockDodge/index.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+    <a href="../RockDodge/" class="project-teaser tilt-card portfolio-card-link h-100" aria-label="Open Rock Dodge project details">
+      <img src="../assets/img/portfolio/RockDodge/rockdodge2p.png" alt="Rock Dodge two-player screenshot">
+      <div>
+        <span>p5.js · Arcade</span>
+        <h3>Rock Dodge</h3>
+        <p>A small arcade style dodging game.</p>
       </div>
-    </div>
+    </a>
   </div><!-- End Portfolio Item -->
 
           </div><!-- End Portfolio Container -->
@@ -184,15 +159,9 @@
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Personal</strong> <span>All Rights Reserved</span>
+          <span>Copyright</span> <strong class="px-1 sitename">Roy van Leeuwen</strong> <span>All Rights Reserved</span>
         </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
+
       </div>
     </div>
   </footer>

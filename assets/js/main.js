@@ -80,13 +80,15 @@
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
@@ -95,6 +97,7 @@
    * Animation on scroll function and init
    */
   function aosInit() {
+    if (typeof AOS === 'undefined') return;
     AOS.init({
       duration: 600,
       easing: 'ease-in-out',
@@ -123,13 +126,16 @@
   /**
    * Initiate Pure Counter
    */
-  new PureCounter();
+  if (typeof PureCounter !== 'undefined') {
+    new PureCounter();
+  }
 
   /**
    * Animate the skills items on reveal
    */
   let skillsAnimation = document.querySelectorAll('.skills-animation');
   skillsAnimation.forEach((item) => {
+    if (typeof Waypoint === 'undefined') return;
     new Waypoint({
       element: item,
       offset: '80%',
@@ -154,7 +160,9 @@
       if (swiperElement.classList.contains("swiper-tab")) {
         initSwiperWithCustomPagination(swiperElement, config);
       } else {
-        new Swiper(swiperElement, config);
+        if (typeof Swiper !== 'undefined') {
+          new Swiper(swiperElement, config);
+        }
       }
     });
   }
@@ -164,9 +172,11 @@
   /**
    * Initiate glightbox
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  if (typeof GLightbox !== 'undefined') {
+    GLightbox({
+      selector: '.glightbox'
+    });
+  }
 
   /**
    * Init isotope layout and filters
@@ -177,6 +187,7 @@
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
+    if (typeof imagesLoaded === 'undefined' || typeof Isotope === 'undefined') return;
     imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
@@ -190,6 +201,7 @@
       filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
+        if (!initIsotope) return;
         initIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
@@ -239,7 +251,7 @@
    */
 
   // Parallax effect on scroll for enhanced depth
-  function paralaxEffect() {
+  function parallaxEffect() {
     const parallaxElements = document.querySelectorAll('[data-parallax]');
     if (parallaxElements.length === 0) return;
 
@@ -252,11 +264,11 @@
     });
   }
 
-  window.addEventListener('scroll', paralaxEffect);
+  window.addEventListener('scroll', parallaxEffect, { passive: true });
 
   // Add ripple effect to buttons and interactive elements
   function addRippleEffect() {
-    const buttons = document.querySelectorAll('button, .btn, [role="button"], .details-link, .preview-link');
+    const buttons = document.querySelectorAll('button, .btn, [role="button"]');
     
     buttons.forEach(btn => {
       if (btn.classList.contains('ripple-added')) return;
@@ -328,7 +340,32 @@
     statObserver.observe(statsSection);
   }
 
-  // Smooth page transitions
+  // Smooth section navigation + active nav state for same-page links
+  const samePageNavLinks = document.querySelectorAll('#navmenu a[href^="#"]');
+
+  function setActiveNavLink(activeLink) {
+    document.querySelectorAll('#navmenu a.active').forEach(link => link.classList.remove('active'));
+    if (activeLink) activeLink.classList.add('active');
+  }
+
+  function updateActiveSectionNav() {
+    if (!samePageNavLinks.length) return;
+
+    const headerOffset = (document.querySelector('#header')?.offsetHeight || 0) + 32;
+    let currentLink = samePageNavLinks[0];
+
+    samePageNavLinks.forEach(link => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY + headerOffset >= targetTop) {
+        currentLink = link;
+      }
+    });
+
+    setActiveNavLink(currentLink);
+  }
+
   document.querySelectorAll('a[href*="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -336,12 +373,27 @@
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
+          setActiveNavLink(this.closest('#navmenu') ? this : document.querySelector(`#navmenu a[href="${href}"]`));
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
         }
       }
+    });
+  });
+
+  window.addEventListener('load', updateActiveSectionNav);
+  document.addEventListener('scroll', updateActiveSectionNav, { passive: true });
+
+  // Make full-card portfolio links navigate reliably, even when enhanced hover/tilt scripts are active
+  document.querySelectorAll('.portfolio-card-link').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const href = this.getAttribute('href');
+      if (!href) return;
+      e.preventDefault();
+      window.location.assign(this.href);
     });
   });
 
@@ -446,4 +498,45 @@
 
     document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
   }
+
+  /**
+   * Portfolio-grade immersive interactions
+   */
+  const supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (supportsFinePointer && !reducedMotion) {
+    const spotlightTarget = document.documentElement;
+    window.addEventListener('pointermove', (event) => {
+      spotlightTarget.style.setProperty('--spotlight-x', `${event.clientX}px`);
+      spotlightTarget.style.setProperty('--spotlight-y', `${event.clientY}px`);
+    }, { passive: true });
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 10;
+        const rotateX = ((0.5 - (y / rect.height)) * 10);
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    document.querySelectorAll('.magnetic-link').forEach(link => {
+      link.addEventListener('pointermove', (event) => {
+        const rect = link.getBoundingClientRect();
+        const x = (event.clientX - rect.left - rect.width / 2) * 0.18;
+        const y = (event.clientY - rect.top - rect.height / 2) * 0.18;
+        link.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      link.addEventListener('pointerleave', () => {
+        link.style.transform = '';
+      });
+    });
+  }
+
 })();

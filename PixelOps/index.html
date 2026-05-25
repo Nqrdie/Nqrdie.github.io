@@ -28,14 +28,6 @@
 
   <!-- Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Personal
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Updated: Nov 04 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="portfolio-details-page">
@@ -43,15 +35,17 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="../index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="../assets/img/logo.png" alt=""> -->
+      <a href="../index.html" class="logo d-flex align-items-center" aria-label="Roy van Leeuwen home">
+        <span class="brand-logo" aria-hidden="true"></span>
       </a>
 
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu" aria-label="Project navigation">
         <ul>
-          <li><a href="../index.html">About</a></li>
-          <li><a href="../Portfolio/index.html" class="active">Portfolio</a></li>
+          <li><a href="../index.html" class="page-link">Home</a></li>
+          <li class="nav-page-item"><a href="../Portfolio/" class="page-link">Portfolio</a></li>
+          <li><a href="#project-title" class="page-link active">PixelOps</a></li>
+          <li><a href="#project-information" class="section-link">Information</a></li>
+          <li><a href="#project-code" class="section-link">Code</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -62,7 +56,7 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <div id="project-title" class="page-title project-page-title" data-aos="fade">
       <div class="heading">
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
@@ -72,20 +66,10 @@
           </div>
         </div>
       </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../Portfolio/index.html">Portfolio</a></li>
-            <li class="current">PixelOps</li>
-          </ol>
-        </div>
-      </nav>
     </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
-
+    <section id="portfolio-details" class="portfolio-details section dev-section project-detail-section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
@@ -141,14 +125,14 @@
           </div>
 
           <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+            <div id="project-information" class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Project Information</h3>
               <ul>
-                <li><strong>Name</strong>: PixelOps</li>
-                <li><strong>Details</strong>: <small><i>Unity, PC, FPS, Multiplayer</i></small></li>
-                <li><strong>Project Date</strong>: 20th March, 2025</li>
-                <li><strong>Project Duration</strong>: ~55h</li>
-                <li><strong>GitHub</strong>:
+                <li><strong>Name</strong> PixelOps</li>
+                <li><strong>Details</strong> <small><i>Unity, PC, FPS, Multiplayer</i></small></li>
+                <li><strong>Project Date</strong> 20th March, 2025</li>
+                <li><strong>Project Duration</strong> ~55h</li>
+                <li><strong>GitHub</strong>
                   <a href="https://github.com/Nqrdie/Pixelops" target="_blank">PixelOps</a>
                 </li>
               </ul>
@@ -176,7 +160,7 @@
               <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
                 rel="stylesheet" />
 
-              <div class="portfolio-info">
+              <div id="project-code" class="portfolio-info">
                 <h3>Code Snippets & Videos</h3>
                 <ul>
                   <li>Below are some code snippets from the project that I made along with related videos demonstrating
@@ -418,8 +402,8 @@ public class GameSystem : NetworkBehaviour
                   <div class="portfolio-info">
                     <h3>GameManager Script</h3>
                     <ul>
-                      <li><strong>Language</strong>: C#</li>
-                      <li><strong>Description</strong>: This script is responsible for linking all the scripts together for multiplayer and the logic behind all the data</li>
+                      <li><strong>Language</strong> C#</li>
+                      <li><strong>Description</strong> This script is responsible for linking all the scripts together for multiplayer and the logic behind all the data</li>
                     </ul>
                   </div>
 
@@ -596,17 +580,7 @@ public class WeaponHandler : MonoBehaviour
         damage = currentWeapon.damage;
         fireRate = currentWeapon.fireRate;
         reloadTime = currentWeapon.reloadTime;
-        weaponMesh = currentWeapon.weaponMesh;
-        maxReserveAmmo = currentWeapon.maxReserveAmmo;
-
-        weaponManager.currentWeaponIndex = i;
-
-        weaponManager.SwapMesh(i);
-    }
-
-    private void Shoot()
-    {
-        nextFire = Time.time + fireRate;
+       nextFire = Time.time + fireRate;
 
         currentAmmo--;
         muzzleFlashParticleSystem.Play();
@@ -643,7 +617,17 @@ public class WeaponHandler : MonoBehaviour
     {
         currentAmmo = maxAmmo;
         reserveAmmo = maxReserveAmmo;
+    }  weaponMesh = currentWeapon.weaponMesh;
+        maxReserveAmmo = currentWeapon.maxReserveAmmo;
+
+        weaponManager.currentWeaponIndex = i;
+
+        weaponManager.SwapMesh(i);
     }
+
+    private void Shoot()
+    {
+       
 }
       </code></pre>
                   </div>
@@ -654,8 +638,8 @@ public class WeaponHandler : MonoBehaviour
                   <div class="portfolio-info">
                     <h3>Weapon Script</h3>
                     <ul>
-                      <li><strong>Language</strong>: C#</li>
-                      <li><strong>Description</strong>: This script is responsible for all the gun mechanics in the game.</li>
+                      <li><strong>Language</strong> C#</li>
+                      <li><strong>Description</strong> This script is responsible for all the gun mechanics in the game.</li>
                     </ul>
                   </div>
 
@@ -693,13 +677,7 @@ public class WeaponHandler : MonoBehaviour
         <div class="copyright">
           <span>Copyright</span> <strong class="px-1 sitename">Personal</strong> <span>All Rights Reserved</span>
         </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
+
       </div>
     </div>
   </footer>

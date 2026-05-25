@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Roy.dev logo">
+  <defs>
+    <linearGradient id="g" x1="9" y1="8" x2="55" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8e18d2"/>
+      <stop offset="0.58" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.66 0 0 0 0 0.33 0 0 0 0 0.97 0 0 0 .75 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#07070d"/>
+  <rect x="4" y="4" width="56" height="56" rx="15" fill="url(#g)" opacity="0.2"/>
+  <path filter="url(#glow)" d="M18 42 8 32l10-10 4 4-6 6 6 6-4 4Zm28 0-4-4 6-6-6-6 4-4 10 10-10 10ZM27 47l-5-1 15-29 5 1-15 29Z" fill="url(#g)"/>
+</svg>
