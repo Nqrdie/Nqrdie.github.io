@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SecureLogin | Roy van Leeuwen</title>
+  <meta name="description" content="SecureLogin by Roy van Leeuwen: A login system built with React, Vite, TypeScript, Postgresql, ASP.NET, and Caddy. It provides authentication for web applications.">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070d'/%3E%3Cpath d='M18 41 8 31l10-10 4 4-6 6 6 6-4 4Zm28 0-4-4 6-6-6-6 4-4 10 10-10 10ZM27 46l-5-1 15-28 5 1-15 28Z' fill='%23a855f7'/%3E%3C/svg%3E" rel="icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center" aria-label="Roy van Leeuwen home">
+        <span class="brand-logo" aria-hidden="true"></span>
+      </a>
+
+      <nav id="navmenu" class="navmenu" aria-label="Project navigation">
+        <ul>
+          <li><a href="../index.html" class="page-link">Home</a></li>
+          <li class="nav-page-item"><a href="../Portfolio/" class="page-link">Portfolio</a></li>
+          <li><a href="#project-title" class="page-link active">SecureLogin</a></li>
+          <li><a href="#project-information" class="section-link">Information</a></li>
+          <li><a href="#project-code" class="section-link">Code</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div id="project-title" class="page-title project-page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>SecureLogin</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section dev-section project-detail-section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 9999999
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="../assets/img/portfolio/SecureLogin/Login.png">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/SecureLogin/Register.png">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/SecureLogin/Email-verification.png">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/SecureLogin/email.png">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/SecureLogin/email verified.png">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/SecureLogin/database.png">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div id="project-information" class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Name</strong> SecureLogin</li>
+                <li><strong>Details</strong> <small><i>React, Vite, ASP.NET Core, PostgreSQL, JWT, BCrypt, Caddy</i></small></li>
+                <li><strong>Project Date</strong> 30th May, 2026</li>
+                <li><strong>Project Duration</strong> ~80 hours</li>
+                <li><strong>GitHub</strong>
+                  <a href="https://github.com/Nqrdie/SecureLogin" target="_blank">SecureLogin</a>
+                </li>
+              </ul>
+
+              <h5><strong>Description</strong></h5>
+              <p>
+                SecureLogin is a full-stack authentication application built with React, Vite, ASP.NET Core, and PostgreSQL. The project features JWT-based authentication, bcrypt password hashing, email verification, security-focused middleware such as Helmet, and Caddy for secure web serving. It serves as a practical demonstration of secure application design, deployment, and modern DevOps-oriented development practices.
+              </p>
+              
+              <h5><strong>Role & Contribution</strong></h5>
+              <ul>
+                <li><strong>Solo project</strong></li>
+                <p>Full-stack development, database design, and API implementation</p>
+              </ul>
+            </div>
+          </div>
+          
+
+        <!-- Prism.js CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet" />
+
+        <div id="project-code" class="portfolio-info">
+          <h3>Code Snippets & Videos</h3>
+          <ul>
+            <li>Below are some code snippets from the project that I made along with related videos demonstrating
+              their functionality you can view the full project on GitHub, the link is at the top.</li>
+          </ul>
+        </div>
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using Microsoft.EntityFrameworkCore;
+using API.Data;
+using API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IO;
+using API.Services.Options;
+using API.Interfaces;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var httpsCertPath = builder.Configuration["Https:CertPath"];
+var httpsCertPassword = builder.Configuration["Https:CertPassword"];
+
+if (!string.IsNullOrEmpty(httpsCertPath))
+{
+    var resolvedCertPath = Path.IsPathRooted(httpsCertPath)
+        ? httpsCertPath
+        : Path.Combine(builder.Environment.ContentRootPath, httpsCertPath);
+
+    if (File.Exists(resolvedCertPath))
+    {
+        builder.WebHost.ConfigureKestrel(options =>
+        {
+            options.ListenLocalhost(5093); 
+        });
+    }
+}
+
+var jwtKey = builder.Configuration["Jwt:Key"];
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)
+        )
+    };
+});
+
+builder.Services.AddAuthentication();
+
+builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("EmailOptions"));
+    
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
+
+builder.Services.AddScoped<AccountService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173", "http://secureloginapp.ddns.net:5173", "https://secureloginapp.ddns.net")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseCors("AllowFrontend");
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>Program Script</h3>
+              <ul>
+                <li><strong>Language</strong> C#</li>
+                <li><strong>Description</strong> Configures application services including JWT authentication, PostgreSQL database connectivity, CORS policies, dependency injection, HTTPS configuration, and API middleware.</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="code-snippets">
+          <div class="code-snippet-wrapper">
+            <!-- Zoom buttons -->
+            <div class="zoom-controls">
+              <button class="zoom-in">+</button>
+              <button class="zoom-out">-</button>
+            </div>
+
+            <!-- Fixed container for scrolling -->
+            <div class="pre-container">
+              <pre><code class="language-csharp">
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using API.Models;
+using API.Services;
+using API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+
+namespace API.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize]
+    public class AccountController : ControllerBase
+    {
+        private readonly AccountService _accountService;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
+
+        private readonly string _frontendBaseUrl = "https://secureloginapp.ddns.net";
+
+        public AccountController(AccountService accountService, IConfiguration configuration, IEmailService emailService)
+        {
+            _accountService = accountService;
+            _configuration = configuration;
+            _emailService = emailService;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_accountService.GetAll());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var account = _accountService.Get(id);
+            if (account == null) return NotFound();
+            return Ok(account);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Account account)
+        {
+            _accountService.AddAccount(account);
+            return Ok(account);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _accountService.DeleteAccount(id);
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Account account)
+        {
+            if (id != account.Id) return BadRequest();
+            _accountService.UpdateAccount(account);
+            return NoContent();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterRequest request)
+        {
+            var existingUser = _accountService.GetAll()
+                .FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
+
+            if (existingUser != null)
+                return BadRequest("Email already exists");
+
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            var verificationToken = Guid.NewGuid().ToString();
+
+            var verificationLink =
+                $"{_frontendBaseUrl}/api/account/verify-success?token={Uri.EscapeDataString(verificationToken)}";
+
+            _accountService.AddAccount(new Account
+            {
+                Name = request.Name,
+                Email = request.Email,
+                Password = passwordHash,
+                EmailVerificationToken = verificationToken
+            });
+
+            await _emailService.SendEmailAsync(
+                request.Name,
+                request.Email,
+                verificationLink
+            );
+
+            return Ok(new { message = "Account created" });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login(LoginRequest loginRequest)
+        {
+            var user = _accountService.GetAll()
+                .FirstOrDefault(u => u.Email == loginRequest.Email.ToLower());
+
+            if (user == null) return Unauthorized();
+
+            var validPassword = BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password);
+
+            if (!validPassword) return Unauthorized();
+
+            if (!user.EmailVerified)
+                return Unauthorized(new { message = "Please verify your email first" });
+
+            var token = GenerateJwtToken(user);
+
+            return Ok(new { token });
+        }
+
+        private string GenerateJwtToken(Account user)
+        {
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(15),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("verify-success")]
+        public IActionResult VerifyEmail(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+                return Redirect($"{_frontendBaseUrl}/verify-success?error=missing");
+
+            var user = _accountService
+                .GetAll()
+                .FirstOrDefault(u => u.EmailVerificationToken == token);
+
+            if (user == null)
+                return Redirect($"{_frontendBaseUrl}/verify-success?error=invalid");
+
+            user.EmailVerified = true;
+            user.EmailVerificationToken = null;
+
+            _accountService.UpdateAccount(user);
+
+            return Redirect($"{_frontendBaseUrl}/verify-success?status=success");
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public IActionResult Profile()
+        {
+            return Ok("Protected route");
+        }
+    }
+}
+      </code></pre>
+            </div>
+          </div>
+
+          <!-- Right Side: Info and Video -->
+          <div class="right-content">
+            <div class="portfolio-info">
+              <h3>AccountController script</h3>
+              <ul>
+                <li><strong>Language</strong> C#</li>
+                <li><strong>Description</strong> Handles user registration, login, JWT generation, password hashing with BCrypt, email verification workflows, and protected API endpoints.</li>
+              </ul>
+            </div>
+
+            <!-- Video below the info -->
+            <div class="portfolio-video">
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Prism.js JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+
+      </div>
+
+      </div>
+
+      </div>
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <h3 class="sitename">Links</h3>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/Nqrdie"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/roy-van-leeuwen-42a820341/"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Roy van Leeuwen</strong> <span>All Rights Reserved</span>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -3586,24 +3586,91 @@ body {
   scroll-margin-top: 96px;
 }
 
-/* About + Skills layout */
-.skills-card {
-  height: 100%;
+/* Skills section wrapper */
+.skills {
+  padding: 60px 0;
 }
 
-/* Auto-wrap skills nicely */
-.skill-cloud {
+/* Main container */
+.skill-cloud-large {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Each group card */
+.skill-group {
+  padding: 18px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  transition: 0.3s ease;
+}
+
+.skill-group:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 50%);
+}
+
+/* Category title */
+.skills-group-text {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+/* Skill pills container */
+.skill-items {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
 }
 
-.skill-cloud span {
-  padding: 10px 16px;
+/* Skill pill */
+.skill-items span {
+  padding: 6px 12px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent-color), transparent 85%);
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
-  color: var(--default-color);
-  font-weight: 500;
-  white-space: nowrap;
+  font-size: 0.9rem;
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+.skills {
+  padding-bottom: 80px;
+}
+
+.skills-anchor {
+  scroll-margin-top: 100px;
+}
+
+#featured {
+  padding-top: 36px;
+}
+
+#about {
+  padding-top: 56px;
+  padding-bottom: 36px;
+}
+
+.home-overview .about-card,
+.home-overview .skill-cloud-large {
+  height: calc(100% - 31px);
+}
+
+@media (max-width: 991px) {
+  #featured {
+    padding-top: 24px;
+  }
+
+  #about {
+    padding-top: 44px;
+    padding-bottom: 28px;
+  }
+
+  .home-overview .about-card,
+  .home-overview .skill-cloud-large {
+    height: auto;
+  }
 }

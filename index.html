@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Roy van Leeuwen</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Portfolio of Roy van Leeuwen, Software Developer focused on Cybersecurity. Explore projects in C#, Unity, React, ASP.NET Core, and PostgreSQL.">
+  <meta name="keywords" content="software developer, cybersecurity, c#, asp.net core, react, unity, portfolio">
 
   <!-- Favicons -->
   <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070d'/%3E%3Cpath d='M18 41 8 31l10-10 4 4-6 6 6 6-4 4Zm28 0-4-4 6-6-6-6 4-4 10 10-10 10ZM27 46l-5-1 15-28 5 1-15 28Z' fill='%23a855f7'/%3E%3C/svg%3E" rel="icon">
@@ -41,9 +41,8 @@
       <nav id="navmenu" class="navmenu" aria-label="Primary navigation">
         <ul>
           <li><a href="#hero" class="section-link active">Home</a></li>
-          <li><a href="#about" class="section-link">About</a></li>
-          <li><a href="#skills" class="section-link">Skills</a></li>
-          <li><a href="#featured-projects" class="section-link">Recent</a></li>
+          <li><a href="#about" class="section-link">About & Skills</a></li>
+          <li><a href="#featured" class="section-link">Featured</a></li>
           <li class="nav-page-item"><a href="Portfolio/" class="page-link">Portfolio</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -63,7 +62,8 @@
     <div class="container hero-content" data-aos="fade-up">
       <!-- <div class="eyebrow"><span class="status-dot"></span>Available for internships, software projects and developer collaborations</div> -->
       <h2>Roy van Leeuwen</h2>
-      <p class="hero-lead">I build <span class="typed" data-typed-items="Games,C# Applications,Gameplay systems"></span></p>
+      <p class="hero-lead">Software Developer focused on Cybersecurity</p>
+
 
       <div class="hero-actions">
         <a class="btn-primary-dev magnetic-link" href="Portfolio/">Explore my projects <i class="bi bi-arrow-right"></i></a>
@@ -79,72 +79,91 @@
 
 
 <!-- About + Skills Combined -->
-<section id="about" class="about section dev-section">
+<section id="about" class="about section dev-section home-overview">
   <div class="container">
-    <div class="row gy-4 align-items-start">
+    <div class="row gy-4 justify-content-center align-items-stretch">
 
       <!-- About -->
-      <div class="col-lg-7" data-aos="fade-up">
+      <div class="col-lg-6" data-aos="fade-up">
         <div class="section-kicker">About</div>
 
         <div class="dev-card about-card">
           <p>
-            I am working towards becoming a Cybersecurity specialist.
-            It has always been my goal and dream to work as an ethical hacker.
-            I enjoy finding vulnerabilities and exploiting them.
+            I am working towards becoming a cybersecurity specialist. My long-term goal is to work in offensive security and ethical hacking. I enjoy learning how systems work, identifying security weaknesses, and understanding how vulnerabilities can be mitigated.
           </p>
 
           <p>
             I have experience with C#, Unity, Lua and JavaScript,
             and I am interested in learning more about DevOps,
-            Cloud technologies and Cybersecurity.
+            cloud technologies and cybersecurity.
           </p>
 
           <div class="quick-facts">
             <span><i class="bi bi-geo-alt"></i> Houten, Netherlands</span>
             <span><i class="bi bi-mortarboard"></i> Grafisch Lyceum Utrecht</span>
-            <span><i class="bi bi-envelope"></i> rrvanleeuwen@kpnmail.nl</span>
+            <span><i class="bi bi-envelope"></i><a href="mailto:rrvanleeuwen@kpnmail.nl">rrvanleeuwen@kpnmail.nl</a></span>
           </div>
         </div>
       </div>
 
       <!-- Skills -->
-      <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+      <div id="skills" class="col-lg-5 skills-anchor" data-aos="fade-up">
         <div class="section-kicker">Skills</div>
-
-        <div class="dev-card skills-card">
           <div class="skill-cloud skill-cloud-large">
-            <span>C#</span>
-            <span>.NET</span>
-            <span>Unity</span>
-            <span>JavaScript</span>
-            <span>Git</span>
-            <span>GitHub</span>
-            <span>Lua</span>
-          </div>
+
+            <div class="skill-group">
+              <div class="skills-group-text">Core</div>
+              <div class="skill-items">
+                <span>C#</span>
+                <span>JavaScript</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skills-group-text">Backend</div>
+              <div class="skill-items">
+                <span>ASP.NET Core</span>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skills-group-text">Frontend</div>
+              <div class="skill-items">
+                <span>Vite</span>
+                <span>React</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skills-group-text">Tools</div>
+              <div class="skill-items">
+                <span>GitHub</span>
+                <span>Unity</span>
+              </div>
+            </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-    <!-- Featured Projects -->
-  <section id="featured-projects" class="section dev-section featured-projects">
-    <div class="container">
-      <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-end mb-4">
-        <div>
-          <div class="section-kicker">Recent Projects</div>
-        </div>
-        <a class="text-link" href="Portfolio/">View full portfolio <i class="bi bi-arrow-up-right"></i></a>
+  <!-- Featured Projects -->
+<section id="featured" class="section dev-section featured-projects">
+  <div class="container">
+    <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-end mb-4">
+      <div>
+        <div class="section-kicker">Featured Projects</div>
       </div>
-      <div class="row gy-4">
-        <div class="col-lg-4" data-aos="fade-up"><a class="project-teaser tilt-card" href="Dead Magic/"><img src="assets/img/portfolio/Dead Magic/Main.png" alt="Dead Magic gameplay menu"><div><span>Unity · Multiplayer · Combat</span><h3>Dead Magic</h3><p>Co-op zombie survival with spells, upgrades, combat and level balancing.</p></div></a></div>
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="120"><a class="project-teaser tilt-card" href="PixelOps/"><img src="assets/img/portfolio/PixelOps/MainMenu.png" alt="PixelOps main menu"><div><span>Unity · FPS · Multiplayer</span><h3>PixelOps</h3><p>Multiplayer FPS with lobby flow, weapons, teams and score systems.</p></div></a></div>
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="240"><a class="project-teaser tilt-card" href="BubbleBall/"><img src="assets/img/portfolio/BubbleBall/Main.png" alt="BubbleBall gameplay"><div><span>Unity · Arena · Multiplayer</span><h3>BubbleBall</h3><p>Multiplayer game of tag with bubble physics.</p></div></a></div>
-      </div>
+      <a class="text-link" href="Portfolio/">View full portfolio <i class="bi bi-arrow-up-right"></i></a>
     </div>
-  </section>
+    <div class="row gy-4">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="240"><a class="project-teaser tilt-card" href="SecureLogin/"><img src="assets/img/portfolio/SecureLogin/Login.png" alt="SecureLogin"><div><span>Vite · React · ASP.NET Core · PostgreSQL</span><h3>SecureLogin</h3><p>Authentication platform featuring JWT authentication, bcrypt password hashing, email verification, and PostgreSQL integration.</p></div></a></div>
+      <div class="col-lg-4" data-aos="fade-up"><a class="project-teaser tilt-card" href="Dead Magic/"><img src="assets/img/portfolio/Dead Magic/Main.png" alt="Dead Magic gameplay menu"><div><span>Unity · Multiplayer · Combat</span><h3>Dead Magic</h3><p>Co-op zombie survival with spells, upgrades, combat and level balancing.</p></div></a></div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="120"><a class="project-teaser tilt-card" href="PixelOps/"><img src="assets/img/portfolio/PixelOps/MainMenu.png" alt="PixelOps main menu"><div><span>Unity · FPS · Multiplayer</span><h3>PixelOps</h3><p>Multiplayer FPS with lobby flow, weapons, teams and score systems.</p></div></a></div>
+    </div>
+  </div>
+</section>
 
 
 
